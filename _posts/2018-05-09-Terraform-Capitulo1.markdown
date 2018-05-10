@@ -1,7 +1,7 @@
 ---
 title:  "Terraform - Capitulo1"
 date:   2018-05-09 22:06:23
-categories: [Devops]
+categories: [Terraform]
 tags: [Terraform]
 ---
 
