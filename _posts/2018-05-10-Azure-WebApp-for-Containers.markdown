@@ -18,24 +18,24 @@ Fue asi que decidimos usar un nuevo servicio de WebApp que salio publicado en Az
 
 Azure webapp for containers. Es uno de los nuevos servicios de azure, el cual nos permite integrar imagenes de Docker, ya sea desde repositorios publicos (DockerHub), o repositorios privados (Azure Container Registry).
 
-## Manos a la Obra ##
+### Manos a la Obra ###
 
 Particularmente toda la infraestructura esta desarrollada con Terraform, y uno de los desafios fue que este servicio, que anteriormente les mencionaba, no esta liberado por Hashicorp.
 
-## Entonces... Que hicimos? ##
+### Entonces... Como lo resolvimos? ###
 
 Luego de dedicar algunas horas de investigacion, vimos que podemos integrar Terraform con templates de Azure ARM, los cuales estan escritos en lenguaje JSON.
 Entonces comenzamos a desarrollar la nueva receta para desplegar este nuevo servicio y asi poder probar la aplicacion.
 
-## La receta ##
+### La receta ###
 
 A continuacion les paso a explicar como desarrollamos la receta para desplegar este nuevo componente e integrarlo con toda la infraestructura.
 
 Partimos de un archivo main.tf el cual tenemos declarados los siguientes componentes:
 
-- Resource Group (Grupo de recursos).
-- App Service Plan.
-- Azure RM Template Deplyment.
+***- Resource Group (Grupo de recursos).***
+***- App Service Plan.***
+***- Azure RM Template Deplyment.***
 
 Aqui les dejo el codigo que utilizamos... Lo separe en dos partes para que se note el codigo escrito en el formato que usa Terraform y en otra parte el template de ARM en formato JSON.
 
