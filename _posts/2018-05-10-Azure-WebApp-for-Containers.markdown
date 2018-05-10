@@ -2,28 +2,44 @@
 title:  "Azure - Webapp for containers"
 date:   2018-05-10 2:01:00
 categories: [Webapp for Containers]
-tags: [WebApp, DevOps, Hashicorp, Containers, Azure]
+tags: [WebApp, DevOps, Hashicorp, Containers, Azure, GuayoyoLabs, Howlermonkey]
 ---
-Hace unos meses que estoy junto con algunos compañeros de la oficina trabajando en levantar una APP previamente desarrollada, en Microsoft Azure. Es una infraestructura muy desafiante, la cual cuenta con varios componentes muy interesantes.
-Particularmente les voy a contar algo que nos paso utilizando el servicio de WebApp para alojar el front end de dicha aplicacion y como lo pudimos resolver.
+Hace unos meses que estoy junto con algunos compañeros de la oficina trabajando en el despliegue de una infraestructura como codigo para una aplicacion. Es un proyecto muy desafiante, el cual cuenta con varios servicios de Microsoft Azure (WebApp, Cluster de Kubernetes - AKS, MongoDB, RedisCache, etc).
+Particularmente les voy a contar algo que nos paso utilizando el servicio de WebApp para alojar una parte dicha aplicacion.
+En el siguiente articulo les voy a hablar del servicio WebApp For Containers.
+
+
+## El Problema ##
+
+Uno de los problemas que se presentaron en este proyecto fue, que la aplicacion (Front-End) era incompatible con el servicio de WebApp, ya sea usando planes Windows o Linux.
+Fue asi que decidimos usar un nuevo servicio de WebApp que salio publicado en Azure...
 
 ## Azure WebApp for Containers ##
 
-Azure webapp for containers, es uno de los nuevos servicios de azure el cual a traves de una webapp, podemos desplegar imagenes de Docker.
+Azure webapp for containers. Es uno de los nuevos servicios de azure, el cual nos permite integrar imagenes de Docker, ya sea desde repositorios publicos (como ser DockerHub), o repositorios privados (como ser Azure Container Registry).
 
-Particularmente toda la infraetsructura esta desarrollada con Terraform, y uno de los desafios que nos surgieron fue que el servicio que les mencionaba anteriormente no esta liberado por Hashicorp.
+## Manos a la Obra ##
+
+Particularmente toda la infraestructura esta desarrollada con Terraform, y uno de los desafios fue que este servicio, que anteriormente les mencionaba, no esta liberado por Hashicorp.
 
 ## Entonces... Que hicimos? ##
 
 Luego de dedicar algunas horas de investigacion, vimos que podemos integrar Terraform con templates de Azure ARM, los cuales estan escritos en lenguaje JSON.
-Entonces nos pusimos manos a la obra...
+Entonces comenzamos a desarrollar la nueva receta para desplegar este nuevo servicio y asi poder probar la aplicacion.
 
 ## La receta ##
 
 A continuacion les paso a explicar como desarrollamos la receta para desplegar este nuevo componente e integrarlo con toda la infraestructura.
 
+Partimos de un archivo main.tf el cual tenemos declarados los siguientes componentes:
 
-```yaml
+- Resource Group (Grupo de recursos).
+- App Service Plan.
+- Azure RM Template Deplyment.
+
+Aqui les dejo el codigo que utilizamos... Lo separe en dos partes para que se note el codigo escrito en el formato que usa Terraform y en otra parte el template de ARM en formato JSON.
+
+```tf
 #Resource Group
 resource "azurerm_resource_group" "rg" {
   name     = "${var.resource_group_name}"
@@ -128,18 +144,16 @@ DEPLOY
 }
 ```
 
-
-
-[Packer Demo][Packer_Demo]
-
-[Packer_Demo]: https://www.youtube.com/watch?v=8FM2bG3SZsA&t=128s
-
 ### Links de interés: ###
 
-[Packer Official Page][Packer]
+[Azure WebApp for Containers][AzureWebAppforContainers]
 
-[Packer Docs][Packer_Docs]
+[AzureWebAppforContainers]: https://azure.microsoft.com/es-es/services/app-service/containers/
 
-[Packer]:      https://www.packer.io/
+[Howlermonkey][Howlermonkey]
 
-[Packer_Docs]: https://www.packer.io/docs/index.html
+[Guayoyo Labs][GuayoyoLabs]
+
+[Howlermonkey]: https://howlermonkey.io/
+
+[GuayoyoLabs]: https://guayoyolabs.com/
