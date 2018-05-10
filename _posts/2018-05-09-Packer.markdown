@@ -84,6 +84,7 @@ Ahora bien, para entender el template y sus opciones, debemos tener en cuenta lo
 **Builders**, un "builder, es el responsable de crear la maquina virtual y generar la imagen a partir de la misma. Existen multiples builders con los que podemos trabajar. Azure, AWS, Digital Ocean, VMWare, Docker, etc.
 
 [Builders para Packer][Builders]
+
 [Builders]: https://www.packer.io/docs/builders/index.html
 
 **Provisioners:** los provisioners preparan el sistema para su uso, ejecutando scripts, comandos, software de terceros. Todo lo que sea neecsario para que podamos configurar a medida nuestra imagen. Existen multiples provisioners con los cuales podremos trabajar, PowerShell, Ansible, Puppet, Salt, Windows Shell, Chef, etc.
