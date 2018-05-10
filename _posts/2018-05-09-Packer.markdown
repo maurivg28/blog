@@ -5,8 +5,11 @@ layout: [post]
 categories: [Packer]
 tags: [Packer]
 ---
+Introducción a Packer:
+Estas dos herramientas de las que voy a hablar a continuación. Surgen de un objetivo principal. Tener ambientes idénticos, versionados e integrados en un CI/CD. Partiendo de una primera versión base de sistema operativo, hasta llegar a una versión final de producción.
+Les voy a contar sobre dos herramientas de HashiCorp. Packer y Terraform.
 
-""
+
 ![Packer_Logo]({{ site.baseurl }}/images/Packer_Logo.PNG)
 
 

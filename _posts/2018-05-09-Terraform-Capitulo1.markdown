@@ -5,10 +5,12 @@ layout: [post]
 categories: [Terraform]
 tags: [Terraform]
 ---
+Introducción a Terraform:
+Hoy en día nos encontramos con grandes retos como afrontar el despliegue de infraestructura como código de una manera que sea rápida, fácil, segura, que nos permita desplegar dicha infraestructura en múltiples proveedores de nube y on-premise.
+Para ello y otro tipo de problemas, nos encontramos con una herramienta como Terraform, capaz que facilitarnos la codificación de la infraestructura que vamos a desplegar.
+
 
 ![Terraform_Logo]({{ site.baseurl }}/images/Terraform_Logo.png)
-
-"Hola Bienvenido a la prueba"
 
 ## Introducción ##
 
