@@ -123,7 +123,7 @@ Por ultimo ya llegamos a este proceso en donde tenemos desplegados y creados tod
 
 Terraform no solo soporta el despliegue en múltiples proveedores de nube, sino que tambienes compatible con múltiples herramientas de configuracion que pueden ser invocadas desde nuestro codigo para configurar componentes específicos de nuestra aplicación.
 
-
+**Links de interés**
 
 [Terraform Official Page][Terraform]
 [Terraform Docs][Terraform_Docs]

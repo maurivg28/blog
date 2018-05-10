@@ -337,5 +337,11 @@ New-AzureRmVM -ResourceGroupName $rgName -Location $location -VM $vmConfig
 
 Ejecutando el template anterior, estaremos creando una maquina virtual a partir de la imagen que hemos creado anteriormente.
 
+**Links de interés**
 
+[Packer Official Page][Packer]
+[Packer Docs][Terraform_Docs]
+
+[Packer]:      https://www.packer.io/
+[Packer_Docs]: https://www.packer.io/docs/index.html
 
