@@ -36,7 +36,7 @@ Normalmente usamos uno o mas ficheros para definir la arquitectura, una serie de
 
 A continuación voy a mostrar un ejemplo sencillo, usando un proveedor de Docker, generado en un archivo llamado main.tf:
 
-``` JSON
+``` yaml
 #Config Docker provider
 
 provider "docker" {
@@ -67,7 +67,7 @@ Una vez codificada nuestra infraestructura podemos hacer uso de dos comandos:
 El primero es terraform plan, el cual nos mostrara todos los recursos definidos en nuestro código.
 A continuación vamos a utilizar otro comando terraform apply, y veremos como terraform se encarga de aplicar el plan definido anteriormente y desplegar nuestra infraestructura.
 
-``` JSON
+``` yaml
 terraform apply
 docker_image.jenkins: Refreshing state... (ID: sha256:d5c0410b1b443d3ed805078d498526590ae76fc42a1369bc814eb197f5ee102bjenkins:latest)
 docker_container.jenkins: Refreshing state... (ID: 0904115a38630b0f8c7871da9eba9971c3a4ad67acb20d694ef20adc53225d5b)
@@ -99,7 +99,7 @@ State path: terraform.tfstate
 ```
 Tras la ejecución del comando hemos obtenido como resultado un contenedor con una imagen de jenkins y un fichero llamado terraform.tfstate. Dicho fichero almacena el estado actual de la infraestructura y es consultado por Terraform para obtener la información antes de aplicar nuevos cambios sobre la misma. Si borramos el fichero y volvemos a aplicar el plan, obtendremos un mensaje de error indicando que no puede aplicar los cambios:
 
-``` JSON
+``` yaml
 Error applying plan:
 
 1 error(s) occurred:
