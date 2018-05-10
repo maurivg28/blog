@@ -2,7 +2,7 @@
 title:  "Packer"
 date:   2018-05-09 23:15:23
 categories: [Packer]
-tags: [Packer]
+tags: [Packer, DevOps, Hashicorp, Images, Azure]
 ---
 Esta herramienta de la que voy a hablar a continuación. Surge de un objetivo principal. Tener ambientes idénticos, versionados e integrados en un CI/CD. Partiendo de una primera versión base de sistema operativo, hasta llegar a una versión final de producción.
 A continuacion voy a contarles sobre una herramienta que me fue muy util para cumplir este objetivo.

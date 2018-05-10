@@ -2,7 +2,7 @@
 title:  "Terraform"
 date:   2018-05-09 22:06:23
 categories: [Terraform]
-tags: [Terraform]
+tags: [Terraform, DevOps, Hashicorp, Azure, VM, Docker]
 ---
 Hoy en día nos encontramos con grandes retos como afrontar el despliegue de infraestructura como código de una manera que sea rápida, fácil, segura, que nos permita desplegar dicha infraestructura en múltiples proveedores de nube y on-premise.
 Para ello y otro tipo de problemas, nos encontramos con una herramienta como Terraform, capaz que facilitarnos la codificación de la infraestructura que vamos a desplegar.
