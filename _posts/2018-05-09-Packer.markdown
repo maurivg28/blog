@@ -8,7 +8,7 @@ tags: [Packer]
 ![Packer_Logo]({{ site.baseurl }}/images/Packer_Logo.PNG)
 
 
-# * Introducción * #
+## Introducción ##
 
 Estas dos herramientas de las que voy a hablar a continuación. Surgen de un objetivo principal. Tener ambientes idénticos, versionados e integrados en un CI/CD. Partiendo de una primera versión base de sistema operativo, hasta llegar a una versión final de producción.
 Les voy a contar sobre dos herramientas de HashiCorp. Packer y Terraform.
@@ -19,21 +19,21 @@ Packer es una herramienta de código abierto para crear imágenes de máquinas v
 
 Una imagen de máquina virtual es una única unidad estática que contiene un sistema operativo preconfigurado y un software instalado que se usa para crear rápidamente nuevas máquinas en ejecución. Los formatos de imagen de la máquina cambian para cada plataforma. Algunos ejemplos incluyen AMI para EC2, archivos VMDK / VMX para VMware, exportaciones de OVF para VirtualBox, etc.
 
-### Ventajas de usar Packer ###
+## Ventajas de usar Packer ##
 
-# Implementación de infraestructura súper rápida. #
+### Implementación de infraestructura súper rápida. ###
 
 Las imágenes de Packer le permiten ejecutar máquinas completamente aprovisionadas y configuradas en segundos, en lugar de varios minutos u horas. Esto no solo beneficia a ambientes de producción, sino también el desarrollo, ya que las máquinas virtuales de desarrollo también se pueden iniciar en segundos, sin esperar un tiempo de aprovisionamiento típicamente mucho más largo.
 
-# Portabilidad de proveedores múltiples. #
+### Portabilidad de proveedores múltiples. ###
 
 Debido a que Packer crea imágenes idénticas para múltiples plataformas, se puede ejecutar el aprovisionamiento de una imagen en AWS, al mismo tiempo aprovisionar la misma imagen en un ambiente Staging / QA en una nube privada como OpenStack y un ambiente de desarrollo en soluciones de virtualización de escritorio como VMware o VirtualBox. Cada entorno ejecuta una imagen de máquina idéntica, brindando la máxima portabilidad.
 
-# Estabilidad. #
+### Estabilidad. ###
 
 Packer instala y configura todo el software para una máquina en el momento en que se construye la imagen. Si hay errores en estos scripts, se detectarán temprano, en lugar de varios minutos después del lanzamiento de un equipo.
 
-# Mayor capacidad de prueba. #
+### Mayor capacidad de prueba. ###
 
 Después de construir una imagen de máquina, la imagen de la máquina puede iniciarse rápidamente y probarse en lo que llamamos un "smoke test", para verificar que todo parece funcionar. Si las pruebas resultan bien, puedes estar seguro de que cualquier otra máquina lanzada desde esa imagen funcionará correctamente.
 
@@ -46,7 +46,7 @@ Deploy de ambientes DEV/PROD idénticos.
 Creación de ambientes idénticos para crear demos de aplicaciones preinstaladas.
 Hardeing de servidores.
 
-# Instalación #
+## Instalación ##
 
 Packer es una herramienta OpenSource multi plataforma, por lo cual podremos instalarlo en todos los sistemas operativos existentes, Windows, OSx, Linux, etc.
 
@@ -239,7 +239,7 @@ ManagedImageName: myPackerImage
 ManagedImageLocation: eastus
 ```
 
-## **Esquema de su funcionamiento.** ##
+## Esquema de su funcionamiento. ##
 
 Anteriormente se ejecuto el build de la imagen contra la nube de Azure, pero.. ¿Que fue lo que hizo? ¿Como Funciona?.
 A continuación vamos a ver gráficamente como funciona Packer.
