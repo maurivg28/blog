@@ -16,7 +16,7 @@ Fue asi que decidimos usar un nuevo servicio de WebApp que salio publicado en Az
 
 ## Azure WebApp for Containers ##
 
-Azure webapp for containers. Es uno de los nuevos servicios de azure, el cual nos permite integrar imagenes de Docker, ya sea desde repositorios publicos (como ser DockerHub), o repositorios privados (como ser Azure Container Registry).
+Azure webapp for containers. Es uno de los nuevos servicios de azure, el cual nos permite integrar imagenes de Docker, ya sea desde repositorios publicos (DockerHub), o repositorios privados (Azure Container Registry).
 
 ## Manos a la Obra ##
 
