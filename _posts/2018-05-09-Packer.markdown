@@ -1,7 +1,6 @@
 ---
 title:  "Packer"
 date:   2018-05-09 23:15:23
-layout: [post]
 categories: [Packer]
 tags: [Packer]
 ---

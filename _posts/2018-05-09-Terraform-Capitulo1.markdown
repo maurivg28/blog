@@ -1,7 +1,6 @@
 ---
 title:  "Terraform"
 date:   2018-05-09 22:06:23
-layout: [post]
 categories: [Terraform]
 tags: [Terraform]
 ---
