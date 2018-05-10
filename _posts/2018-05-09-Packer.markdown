@@ -244,7 +244,7 @@ ManagedImageLocation: eastus
 Anteriormente se ejecuto el build de la imagen contra la nube de Azure, pero.. ¿Que fue lo que hizo? ¿Como Funciona?.
 A continuación vamos a ver gráficamente como funciona Packer.
 
-![Packer_Logo]({{ site.baseurl }}/images/packer-windows-deployment.png)
+![Esquema_de_Funcionamiento]({{ site.baseurl }}/images/packer-windows-deployment.png)
 
 En pocas palabras Packer se conecta a la nube de Azure, para crear un recurso temporal y dentro del mismo una maquina virtual con todas las características que declaramos en nuestro template, para luego generar la imagen y por ultimo eliminar dicho recurso ya que no se va a utilizar mas. Como resultado final tendremos una imagen de dicha maquina en nuestro recurso.
 
