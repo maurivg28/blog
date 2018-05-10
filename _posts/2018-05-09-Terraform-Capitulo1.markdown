@@ -1,6 +1,6 @@
 ---
 title:  "Terraform"
-date:   2018-05-09 22:06:23
+date:   2018-05-09 22:10:23
 categories: [Terraform]
 tags: [Terraform, DevOps, Hashicorp, Azure, VM, Docker]
 ---
