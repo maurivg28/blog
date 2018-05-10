@@ -14,7 +14,7 @@ En el siguiente articulo les voy a hablar del servicio WebApp For Containers.
 Uno de los problemas que se presentaron en este proyecto fue, que la aplicacion (Front-End) era incompatible con el servicio de WebApp, ya sea usando planes Windows o Linux.
 Fue asi que decidimos usar un nuevo servicio de WebApp que salio publicado en Azure...
 
-## Azure WebApp for Containers ##
+## Webapps con contenedores? ##
 
 Azure webapp for containers. Es uno de los nuevos servicios de azure, el cual nos permite integrar imagenes de Docker, ya sea desde repositorios publicos (DockerHub), o repositorios privados (Azure Container Registry).
 
