@@ -27,7 +27,7 @@ Sin embargo, Terraform nos permite codificar nuestra infraestructura, atendiendo
 
 Terraform se basa en tres sencillos pasos para el despliegue de la infraestructura.
 
-![Terraform_img1]({{ site.baseurl }}/images/Terraform_img1.png)
+![Terraform_img1]({{ site.baseurl }}/images/Terraform_img1.PNG)
 
 ### Write ###
 
