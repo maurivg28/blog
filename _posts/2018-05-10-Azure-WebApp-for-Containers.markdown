@@ -1,0 +1,355 @@
+---
+title:  "Packer"
+date:   2018-05-09 23:15:23
+categories: [Packer]
+tags: [Packer, DevOps, Hashicorp, Images, Azure]
+---
+Esta herramienta de la que voy a hablar a continuación. Surge de un objetivo principal. Tener ambientes idénticos, versionados e integrados en un CI/CD. Partiendo de una primera versión base de sistema operativo, hasta llegar a una versión final de producción.
+A continuacion voy a contarles sobre una herramienta que me fue muy util para cumplir este objetivo.
+
+
+![Packer_Logo]({{ site.baseurl }}/images/Packer_Logo.PNG)
+
+
+## Introducción ##
+
+Estas dos herramientas de las que voy a hablar a continuación. Surgen de un objetivo principal. Tener ambientes idénticos, versionados e integrados en un CI/CD. Partiendo de una primera versión base de sistema operativo, hasta llegar a una versión final de producción.
+Les voy a contar sobre dos herramientas de HashiCorp. Packer y Terraform.
+
+## Que es Packer? ##
+
+Packer es una herramienta de código abierto para crear imágenes de máquinas virtuales idénticas para múltiples plataformas desde una única configuración de origen. Packer es liviano, se ejecuta en todos los sistemas operativos y tiene un alto rendimiento, creando imágenes de máquina virtual para múltiples plataformas en paralelo. Packer no reemplaza la administración de configuración como Chef, Puppet, PowerShell o Ansible . De hecho, al construir imágenes, Packer puede usar herramientas como Chef, Puppet, PowerShell, o Anisble para instalar software en la imagen.
+
+Una imagen de máquina virtual es una única unidad estática que contiene un sistema operativo preconfigurado y un software instalado que se usa para crear rápidamente nuevas máquinas en ejecución. Los formatos de imagen de la máquina cambian para cada plataforma. Algunos ejemplos incluyen AMI para EC2, archivos VMDK / VMX para VMware, exportaciones de OVF para VirtualBox, etc.
+
+## Ventajas de usar Packer ##
+
+### Implementación de infraestructura súper rápida. ###
+
+Las imágenes de Packer le permiten ejecutar máquinas completamente aprovisionadas y configuradas en segundos, en lugar de varios minutos u horas. Esto no solo beneficia a ambientes de producción, sino también el desarrollo, ya que las máquinas virtuales de desarrollo también se pueden iniciar en segundos, sin esperar un tiempo de aprovisionamiento típicamente mucho más largo.
+
+### Portabilidad de proveedores múltiples. ###
+
+Debido a que Packer crea imágenes idénticas para múltiples plataformas, se puede ejecutar el aprovisionamiento de una imagen en AWS, al mismo tiempo aprovisionar la misma imagen en un ambiente Staging / QA en una nube privada como OpenStack y un ambiente de desarrollo en soluciones de virtualización de escritorio como VMware o VirtualBox. Cada entorno ejecuta una imagen de máquina idéntica, brindando la máxima portabilidad.
+
+### Estabilidad. ###
+
+Packer instala y configura todo el software para una máquina en el momento en que se construye la imagen. Si hay errores en estos scripts, se detectarán temprano, en lugar de varios minutos después del lanzamiento de un equipo.
+
+### Mayor capacidad de prueba. ###
+
+Después de construir una imagen de máquina, la imagen de la máquina puede iniciarse rápidamente y probarse en lo que llamamos un "smoke test", para verificar que todo parece funcionar. Si las pruebas resultan bien, puedes estar seguro de que cualquier otra máquina lanzada desde esa imagen funcionará correctamente.
+
+## Casos de uso ##
+
+Packer se puede utilizar en múltiples casos, aquí nombramos solo algunos:
+
+CI/CD.
+Deploy de ambientes DEV/PROD idénticos.
+Creación de ambientes idénticos para crear demos de aplicaciones preinstaladas.
+Hardeing de servidores.
+
+## Instalación ##
+
+Packer es una herramienta OpenSource multi plataforma, por lo cual podremos instalarlo en todos los sistemas operativos existentes, Windows, OSx, Linux, etc.
+
+En este caso les mostraremos como instalar packer en Mac, ejecutando el siguiente comando desde el terminal:
+
+```bash
+$ brew install packer
+```
+
+Luego de instalado Packer, podremos comprobar su correcta instalación, ejecutando el comando:
+
+```bash
+$ packer
+usage: packer [--version] [--help] <command> [<args>]
+
+Available commands are:
+    build       build image(s) from template
+    fix         fixes templates from old versions of packer
+    inspect     see components of a template
+    push        push template files to a Packer build service
+    validate    check that a template is valid
+    version     Prints the Packer version
+```
+
+Hasta aquí, tenemos la herramienta instalada. Pero… como construimos una imagen? En el siguiente ejemplo vamos a construir una imagen con las siguientes características, en la nube de Azure:
+
+  - **Windows Server 2016.**
+  - **Rol de IIS, con todas sus dependencias (.Net Fx4.6, etc).**
+
+## El template ##
+
+Como ya hemos visto, Packer nos permite trabajar con múltiples proveedores al mismo tiempo. El template o receta de Packer es un archivo en formato JSON, que puede ser modificado muy facilmente. En la documentacion oficial del proveedor tenemos las estructuras y opciones para poder modificarlo a medida de la necesidad de cada uno.
+Ahora bien, para entender el template y sus opciones, debemos tener en cuenta los conceptos de algunas opciones principales de la estructura del template:
+
+**Builders**, un "builder, es el responsable de crear la maquina virtual y generar la imagen a partir de la misma. Existen multiples builders con los que podemos trabajar. Azure, AWS, Digital Ocean, VMWare, Docker, etc.
+
+[Builders para Packer][Builders]
+
+[Builders]: https://www.packer.io/docs/builders/index.html
+
+**Provisioners:** los provisioners preparan el sistema para su uso, ejecutando scripts, comandos, software de terceros. Todo lo que sea neecsario para que podamos configurar a medida nuestra imagen. Existen multiples provisioners con los cuales podremos trabajar, PowerShell, Ansible, Puppet, Salt, Windows Shell, Chef, etc.
+
+Una vez que tenemos claros los conceptos mencionados anteriormente, vamos a lo que es la receta de Packer para crear una imagen. Para este caso como objetivo principal queremos una imagen de servidor con Windows Server 2016 (Ultima Version Disponible en la nuve de Azure), y que tenga todo lo necesario para actuar como un Web Server.
+
+Paso a explicar rapidamente mi receta o template. Primero que nada comenzamos declarando un constructor o builder, luego la conexion a nuestro provedor de servicios (Azure), y despues viene lo mas interesante, toda la configuracion que queremos para nuestra imagen. Por ultimo declaro dos provisioners, en el cual uno invoca a un script de powershell (encargado de agregar las features de web server) y el otro ejecuta un comando "in line" que hace el sysprep del sistema operativo una vez que tenemos la imagen creada.
+
+```json
+{
+  "builders": [
+  {
+  "type": "azure-arm",
+  “client_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  “client_secret": "xxxxxx",
+  “tenant_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  “subscription_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  “object_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+
+  "managed_image_resource_group_name": "Packer-Poc-Mauri-RG",
+  "managed_image_name": "win2016_iis",
+
+  "os_type": "Windows",
+  "image_publisher": "MicrosoftWindowsServer",
+  "image_offer": "WindowsServer",
+  "image_sku": "2016-Datacenter",
+  "temp_compute_name": "wsrviis2016",
+
+  "communicator": "winrm",
+  "winrm_use_ssl": "true",
+  "winrm_insecure": "true",
+  "winrm_timeout": "3m",
+  "winrm_username": "packer",
+
+  "azure_tags": {
+  "dept": "Engineering",
+  "task": "Image deployment"
+  },
+  "location": "East US 2",
+  "vm_size": "Standard_DS2_v2"
+  }
+  ],
+  "provisioners": [
+  {
+  "type": "powershell",
+  "scripts": [
+  "{{template_dir}}/../../Provisioners/powershell/install-iis.ps1"
+  ]
+  },
+  {
+  "type": "powershell",
+  "inline": [
+  "if( Test-Path $Env:SystemRoot\\windows\\system32\\Sysprep\\unattend.xml ){ rm $Env:SystemRoot\\windows\\system32\\Sysprep\\unattend.xml -Force}",
+  "& $Env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /shutdown /quiet"
+  ]
+  }
+  ],
+  "post-processors": [
+  {
+  "type": "manifest",
+  "output": "manifest.json",
+  "strip_path": true
+  }
+  ]
+}
+```
+
+Tenemos el template pronto... y ahora como construimos la imagen?
+
+En este caso que estamos trabajando con Azure, como paso previo debemos crear un grupo de recursos para que packer pueda trabajar en él. Tan simple como conectarse  a una consola de Azure, autenticarse y ejecutar el siguiente comando de PowerShell:
+
+```powershell
+PS> Login-AzureRMAccount
+PS> $rgName = “Packer-Poc-Mauri-RG" PS> $location = “East US"
+PS> New-AzureRmResourceGroup -Name $rgName  -Location $location
+```
+
+Una vez que esta el grupo de recursos creado... ejecutamos el comando para construir la imagen invocando a Packer y verlo en accion:
+
+```bash
+$ packer build webserver.json
+```
+
+```yaml
+azure-arm output will be in this color.
+
+==> azure-arm: Running builder ...
+  azure-arm: Creating Azure Resource Manager (ARM) client ...
+==> azure-arm: Creating resource group ...
+==> azure-arm: -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
+==> azure-arm: -> Location : ‘East US’
+==> azure-arm: -> Tags :
+==> azure-arm: ->> task : Image deployment
+==> azure-arm: ->> dept : Engineering
+==> azure-arm: Validating deployment template ...
+==> azure-arm: -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
+==> azure-arm: -> DeploymentName : ‘pkrdppq0mthtbtt’
+==> azure-arm: Deploying deployment template ...
+==> azure-arm: -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
+==> azure-arm: -> DeploymentName : ‘pkrdppq0mthtbtt’
+==> azure-arm: Getting the certificate’s URL ...
+==> azure-arm: -> Key Vault Name : ‘pkrkvpq0mthtbtt’
+==> azure-arm: -> Key Vault Secret Name : ‘packerKeyVaultSecret’
+==> azure-arm: -> Certificate URL : ‘https://pkrkvpq0mthtbtt.vault.azure.net/secrets/packerKeyVaultSecret/8c7bd823e4fa44e1abb747636128adbb'
+==> azure-arm: Setting the certificate’s URL ...
+==> azure-arm: Validating deployment template ...
+==> azure-arm: -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
+==> azure-arm: -> DeploymentName : ‘pkrdppq0mthtbtt’
+==> azure-arm: Deploying deployment template ...
+==> azure-arm: -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
+==> azure-arm: -> DeploymentName : ‘pkrdppq0mthtbtt’
+==> azure-arm: Getting the VM’s IP address ...
+==> azure-arm: -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
+==> azure-arm: -> PublicIPAddressName : ‘packerPublicIP’
+==> azure-arm: -> NicName : ‘packerNic’
+==> azure-arm: -> Network Connection : ‘PublicEndpoint’
+==> azure-arm: -> IP Address : ‘40.76.55.35’
+==> azure-arm: Waiting for WinRM to become available...
+==> azure-arm: Connected to WinRM!
+==> azure-arm: Provisioning with Powershell...
+==> azure-arm: Provisioning with shell script: /var/folders/h1/ymh5bdx15wgdn5hvgj1wc0zh0000gn/T/packer-powershell-provisioner902510110
+  azure-arm: #< CLIXML
+  azure-arm:
+  azure-arm: Success Restart Needed Exit Code Feature Result
+  azure-arm: ------- -------------- --------- --------------
+  azure-arm: True No Success {Common HTTP Features, Default Document, D...
+  azure-arm: <Objs Version=“1.1.0.1” xmlns=“http://schemas.microsoft.com/powershell/2004/04"><Obj S=“progress” RefId=“0"><TN RefId=“0”><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N=“SourceId”>1</I64><PR N=“Record”><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>
+==> azure-arm: Querying the machine’s properties ...
+==> azure-arm: -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
+==> azure-arm: -> ComputeName : ‘pkrvmpq0mthtbtt’
+==> azure-arm: -> Managed OS Disk : ‘/subscriptions/guid/resourceGroups/packer-Resource-Group-pq0mthtbtt/providers/Microsoft.Compute/disks/osdisk’
+==> azure-arm: Powering off machine ...
+==> azure-arm: -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
+==> azure-arm: -> ComputeName : ‘pkrvmpq0mthtbtt’
+==> azure-arm: Capturing image ...
+==> azure-arm: -> Compute ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
+==> azure-arm: -> Compute Name : ‘pkrvmpq0mthtbtt’
+==> azure-arm: -> Compute Location : ‘East US’
+==> azure-arm: -> Image ResourceGroupName : ‘myResourceGroup’
+==> azure-arm: -> Image Name : ‘myPackerImage’
+==> azure-arm: -> Image Location : ‘eastus’
+==> azure-arm: Deleting resource group ...
+==> azure-arm: -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
+==> azure-arm: Deleting the temporary OS disk ...
+==> azure-arm: -> OS Disk : skipping, managed disk was used...
+Build ‘azure-arm’ finished.
+
+==> Builds finished. The artifacts of successful builds are:
+--> azure-arm: Azure.ResourceManagement.VMImage:
+
+ManagedImageResourceGroupName: myResourceGroup
+ManagedImageName: myPackerImage
+ManagedImageLocation: eastus
+```
+
+## Esquema de su funcionamiento. ##
+
+Anteriormente se ejecuto el build de la imagen contra la nube de Azure, pero.. ¿Que fue lo que hizo? ¿Como Funciona?.
+A continuación vamos a ver gráficamente como funciona Packer.
+
+![Esquema_de_Funcionamiento]({{ site.baseurl }}/images/packer-windows-deployment.png)
+
+En pocas palabras Packer se conecta a la nube de Azure, para crear un recurso temporal y dentro del mismo una maquina virtual con todas las características que declaramos en nuestro template, para luego generar la imagen y por ultimo eliminar dicho recurso ya que no se va a utilizar mas. Como resultado final tendremos una imagen de dicha maquina en nuestro recurso.
+
+## Como creamos maquinas usando dichas imágenes? ##
+
+Una vez que tenemos una o varias imágenes creadas, vamos a crear maquinas virtuales a partir de dichas imágenes.
+A continuación vamos a ver dos herramientas:
+
+***Powershell***
+***Terraform***
+
+### PowerShell ###
+
+Powershell, es la herramienta nativa de Microsoft lo cual nos permite ejecutar los cmdlets de azure para crear nuestra maquina virtual.
+Basicamente vamos a ver un template de Powershell para crear dicha maquina virtual.
+
+Ejecutamos el siguiente comando para guardar el usuario y password del usuario administrador de la maquina.
+
+```powershell
+$cred = Get-Credential
+```
+
+El siguiente template obtiene la imagen y crea la maquina virtual a partir de la misma.
+
+```powershell
+# Create a subnet configuration
+$subnetConfig = New-AzureRmVirtualNetworkSubnetConfig `
+  -Name mySubnet `
+  -AddressPrefix 192.168.1.0/24
+
+# Create a virtual network
+$vnet = New-AzureRmVirtualNetwork `
+  -ResourceGroupName $rgName `
+  -Location $location `
+  -Name myVnet `
+  -AddressPrefix 192.168.0.0/16 `
+  -Subnet $subnetConfig
+
+# Create a public IP address and specify a DNS name
+$publicIP = New-AzureRmPublicIpAddress `
+  -ResourceGroupName $rgName `
+  -Location $location `
+  -AllocationMethod "Static" `
+  -IdleTimeoutInMinutes 4 `
+  -Name "myPublicIP"
+
+# Create an inbound network security group rule for port 80
+$nsgRuleWeb = New-AzureRmNetworkSecurityRuleConfig `
+  -Name myNetworkSecurityGroupRuleWWW `
+  -Protocol Tcp `
+  -Direction Inbound `
+  -Priority 1001 `
+  -SourceAddressPrefix * `
+  -SourcePortRange * `
+  -DestinationAddressPrefix * `
+  -DestinationPortRange 80 `
+  -Access Allow
+
+# Create a network security group
+$nsg = New-AzureRmNetworkSecurityGroup `
+  -ResourceGroupName $rgName `
+  -Location $location `
+  -Name myNetworkSecurityGroup `
+  -SecurityRules $nsgRuleWeb
+
+# Create a virtual network card and associate with public IP address and NSG
+$nic = New-AzureRmNetworkInterface `
+  -Name myNic `
+  -ResourceGroupName $rgName `
+  -Location $location `
+  -SubnetId $vnet.Subnets[0].Id `
+  -PublicIpAddressId $publicIP.Id `
+  -NetworkSecurityGroupId $nsg.Id
+
+# Define the image created by Packer
+$image = Get-AzureRMImage -ImageName myPackerImage -ResourceGroupName $rgName
+
+# Create a virtual machine configuration
+$vmConfig = New-AzureRmVMConfig -VMName myVM -VMSize Standard_DS2 | `
+Set-AzureRmVMOperatingSystem -Windows -ComputerName myVM -Credential $cred | `
+Set-AzureRmVMSourceImage -Id $image.Id | `
+Add-AzureRmVMNetworkInterface -Id $nic.Id
+
+New-AzureRmVM -ResourceGroupName $rgName -Location $location -VM $vmConfig
+```
+
+Ejecutando el template anterior, estaremos creando una maquina virtual a partir de la imagen que hemos creado anteriormente.
+
+### Video ###
+
+[Packer Demo][Packer_Demo]
+
+[Packer_Demo]: https://www.youtube.com/watch?v=8FM2bG3SZsA&t=128s
+
+### Links de interés: ###
+
+[Packer Official Page][Packer]
+
+[Packer Docs][Packer_Docs]
+
+[Packer]:      https://www.packer.io/
+
+[Packer_Docs]: https://www.packer.io/docs/index.html
+
