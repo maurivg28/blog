@@ -6,6 +6,7 @@ categories: [Packer]
 tags: [Packer]
 ---
 
+""
 ![Packer_Logo]({{ site.baseurl }}/images/Packer_Logo.PNG)
 
 
