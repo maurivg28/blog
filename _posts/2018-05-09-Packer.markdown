@@ -340,8 +340,10 @@ Ejecutando el template anterior, estaremos creando una maquina virtual a partir 
 **Links de interés**
 
 [Packer Official Page][Packer]
-[Packer Docs][Terraform_Docs]
+
+[Packer Docs][Packer_Docs]
 
 [Packer]:      https://www.packer.io/
+
 [Packer_Docs]: https://www.packer.io/docs/index.html
 

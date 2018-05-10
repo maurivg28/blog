@@ -126,7 +126,9 @@ Terraform no solo soporta el despliegue en múltiples proveedores de nube, sino 
 **Links de interés**
 
 [Terraform Official Page][Terraform]
+
 [Terraform Docs][Terraform_Docs]
 
 [Terraform]:      http://terraform.io
+
 [Terraform_Docs]: https://www.terraform.io/docs/index.html
