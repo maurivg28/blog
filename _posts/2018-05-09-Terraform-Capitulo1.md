@@ -5,7 +5,7 @@ categories: [Devops]
 tags: [Terraform]
 ---
 
-![Terraform_Logo]({{ site.baseurl }}/images/Terraform_Logo.jpg)
+![Terraform_Logo]({{ site.baseurl }}/images/Terraform_Logo.png)
 
 
 ###Introducción
@@ -27,7 +27,7 @@ Sin embargo, Terraform nos permite codificar nuestra infraestructura, atendiendo
 
 Terraform se basa en tres sencillos pasos para el despliegue de la infraestructura.
 
-![Terraform_img1]({{ site.baseurl }}/images/Terraform_img1.jpg)
+![Terraform_img1]({{ site.baseurl }}/images/Terraform_img1.png)
 
 ###Write
 
