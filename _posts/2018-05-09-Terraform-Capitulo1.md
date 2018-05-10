@@ -8,12 +8,12 @@ tags: [Terraform]
 ![Terraform_Logo]({{ site.baseurl }}/images/Terraform_Logo.png)
 
 
-###Introducción
+## Introducción ##
 
 Hoy en día nos encontramos con grandes retos como afrontar el despliegue de infraestructura como código de una manera que sea rápida, fácil, segura, que nos permita desplegar dicha infraestructura en múltiples proveedores de nube y on-premise.
 Para ello y otro tipo de problemas, nos encontramos con una herramienta como Terraform, capaz que facilitarnos la codificación de la infraestructura que vamos a desplegar.
 
-Que soluciones nos ofrece terraform?
+## Que soluciones nos ofrece terraform? ##
 
 Cuanto mas grande se vuelve un servicio, mas difícil se hace su administración y la operación de manera manual. También pueda que exista un servicio en particular para nuestra aplicación que deba correr en un proveedor de nube especifico y que tengamos ligado otro servicio corriendo en otro proveedor de nube, por tanto esto nos enfrenta a utilizar dos consolas de administración distintas o CLI diferentes para el aprovisionamiento de la aplicación.
 
@@ -23,13 +23,13 @@ La solución a estos problemas pasaría por una herramienta que nos permita mode
 
 Sin embargo, Terraform nos permite codificar nuestra infraestructura, atendiendo las necesidades de nuestro servicio y ofreciendo un amplio abanico de proveedores de nube.
 
-###Como funciona?
+## Como funciona? ##
 
 Terraform se basa en tres sencillos pasos para el despliegue de la infraestructura.
 
 ![Terraform_img1]({{ site.baseurl }}/images/Terraform_img1.png)
 
-###Write
+### Write ###
 
 Mediante ficheros de configuración, generamos la sintaxis propuesta por terraform (un lenguaje muy fácil y declarativo).
 Normalmente usamos uno o mas ficheros para definir la arquitectura, una serie de variables para poder parametrizar nuestro despliegue y algunas variables de salida donde podremos obtener datos necesarios, como ser IP, FQDN del conjunto de componentes que forman parte de la infraestructura.
@@ -60,7 +60,7 @@ resource "docker_image" "jenkins" {
 
 ```
 
-###Plan
+### Plan ###
 
 Una vez codificada nuestra infraestructura podemos hacer uso de dos comandos:
 
@@ -113,11 +113,11 @@ above and apply again to incrementally change your infrastructure.
 ```
 Para solucionar este problema debemos guardar dicho archivo de estado en lo que llamamos backend (storage de Azure, S3, etc) o también podremos guardar dicho archivo en un sistema de control de versiones (GIT).
 
-###Create
+### Create ###
 
 Por ultimo ya llegamos a este proceso en donde tenemos desplegados y creados todos los componentes de nuestra aplicación ya sea en un solo proveedor de nube como en varios al mismo tiempo.
 
-###Otras ventajas
+### Otras ventajas ###
 
 Terraform no solo soporta el despliegue en múltiples proveedores de nube, sino que tambienes compatible con múltiples herramientas de configuracion que pueden ser invocadas desde nuestro codigo para configurar componentes específicos de nuestra aplicación.
 
