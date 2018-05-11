@@ -43,7 +43,9 @@ Esto permite actualizar los servicios de forma rápida y ligera sin afectar los 
 ## Características de un contenedor ##
 
 **Tiempo de ejecución:** cada contenedor se ejecuta en un solo proceso.
+
 **Permisos de escritura:** sólo tendrá permiso a sus propios archivos y a los volúmenes asociados .
+
 **Capas:** es en una imagen en base a un sistema operativo.
 
 Estos términos aparecen en diversos contextos, y es importante ver cómo se relacionan entre sí. Ahora que tenemos estos fundamentos básicos, podemos pasar a conocer más sobre otro importante concepto de Docker: los volúmenes.
