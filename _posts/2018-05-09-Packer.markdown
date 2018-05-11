@@ -96,7 +96,7 @@ Una vez que tenemos claros los conceptos mencionados anteriormente, vamos a lo q
 
 Paso a explicar rapidamente mi receta o template. Primero que nada comenzamos declarando un constructor o builder, luego la conexion a nuestro provedor de servicios (Azure), y despues viene lo mas interesante, toda la configuracion que queremos para nuestra imagen. Por ultimo declaro dos provisioners, en el cual uno invoca a un script de powershell (encargado de agregar las features de web server) y el otro ejecuta un comando "in line" que hace el sysprep del sistema operativo una vez que tenemos la imagen creada.
 
-```json
+```bash
 {
   "builders": [
   {
@@ -171,7 +171,7 @@ Una vez que esta el grupo de recursos creado... ejecutamos el comando para const
 $ packer build webserver.json
 ```
 
-```yaml
+```bash
 azure-arm output will be in this color.
 
 ==> azure-arm: Running builder ...
