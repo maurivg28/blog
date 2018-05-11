@@ -4,8 +4,8 @@ date:   2018-05-09 23:15:23
 categories: [Docker]
 tags: [Docker, DevOps, Contenedores, Images]
 ---
+No hace mucho que me toco dar soporte a una infraestructura montada en un ambiente de contenedores, es por eso que les voy a contar un poco acerca de Docker.
 Docker es una de las herramientas de la que se está hablando mucho, esto es así ya que tiene varios aspectos interesantes que cambian la forma de desarrollar aplicaciones. Docker es una forma de ejecutar procesos de forma aislada pero también se compone de herramientas para construir imágenes y un repositorio para compartirlas.
-
 
 ![Docker_Logo]({{ site.baseurl }}/images/Docker_Logo.png)
 
