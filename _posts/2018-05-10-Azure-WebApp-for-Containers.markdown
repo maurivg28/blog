@@ -39,6 +39,7 @@ Partimos de un archivo main.tf el cual tenemos declarados los siguientes compone
 
 Aqui les dejo el codigo que utilizamos... Lo separe en dos partes para que se note el codigo escrito en el formato que usa Terraform y en otra parte el template de ARM en formato JSON.
 
+Parte 1
 ```yaml
 #Resource Group
 resource "azurerm_resource_group" "rg" {
@@ -76,8 +77,8 @@ resource "azurerm_app_service_plan" "serviceplan" {
   }
 }
 ```
-
-```JSON
+Parte 2
+```yaml
 #Template ARM para WebApp For Containers
 resource "azurerm_template_deployment" "tmpl" {
   name                = "${var.template_name}"
