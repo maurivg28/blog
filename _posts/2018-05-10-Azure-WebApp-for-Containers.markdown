@@ -40,7 +40,7 @@ Partimos de un archivo main.tf el cual tenemos declarados los siguientes compone
 Aqui les dejo el codigo que utilizamos... Lo separe en dos partes para que se note el codigo escrito en el formato que usa Terraform y en otra parte el template de ARM en formato JSON.
 
 Parte 1
-```yaml
+```bash
 #Resource Group
 resource "azurerm_resource_group" "rg" {
   name     = "${var.resource_group_name}"
