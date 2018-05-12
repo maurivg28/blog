@@ -32,7 +32,9 @@ Hoy en día cualquier compañía, suele hacer uso de varios entornos para llevar
 Para poder tener todos estos entornos funcionando se ha de invertir varias horas y personas de sistemas en su creación y configuración. Aquí es donde entran en juego las ventajas más prometedoras Rancher, que permite:
 
 ***-Crear tantos entornos como se necesite solo con unos cuantos clicks.***
+
 ***-Elegir el orquestador de containers de entre Cattle, Mesos, Kubernetes y Docker Swarm.***
+
 ***-Administrar usuarios y roles para los distintos entornos.***
 
 ![RancherOS_Consola_Env]({{ site.baseurl }}/images/rancheros_02.PNG)
@@ -68,8 +70,11 @@ Rancher OS maneja agentes para poder establecer la comunicacion entre él y sus 
 Basta con agregar los host´s desde la consola de Rancher OS, siguiendo estos pasos:
 
 **1. Dentro del menu, elegimos Infrastructure > Hosts**
+
 **2. Segimos los pasos que nos marca el asistente para instalar el agente en el host**
+
 **3. Corremos el comando en el host que queremos que Rancher OS administre**
+
 
 ![RancherOS_Consola_Host]({{ site.baseurl }}/images/rancheros_01.PNG)
 
@@ -79,9 +84,13 @@ Rancher OS nos permite manejar varios entornos. Asimismo nos permite crear difer
 Para crear un cluster de Docker Swarm, tenemos que seguir estos pasos:
 
 **1. Dentro del menu, vamos a la opción Manage Environments.**
+
 **2. Seleccionamos la opción, Add Environment.**
-**3. Seleccionamos que cluster queremos administrar, Docker Swarm, Kubernetes, Mesos, etc.
+
+**3. Seleccionamos que cluster queremos administrar, Docker Swarm, Kubernetes, Mesos, etc.**
+
 **4. Por ultimo, seleccionamos la opción Create.**
+
 
 ![RancherOS_Consola_Env]({{ site.baseurl }}/images/rancheros_02.PNG)
 
