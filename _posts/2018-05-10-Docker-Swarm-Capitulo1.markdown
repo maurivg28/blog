@@ -4,7 +4,7 @@ date:   2018-05-12 16:31:23
 categories: [Docker, Swarm]
 tags: [Docker, DevOps, Contenedores, Images, Swarm]
 ---
-Siguendo en el mundo de los contenedores y de Docker. Hoy les voy a hablar de una herramienta propia de Docker la cual me quedaba por investigar. Docker Swarm.
+Siguiendo en el mundo de los contenedores y de Docker. Hoy les voy a hablar de una herramienta propia de Docker la cual me quedaba por investigar. Docker Swarm.
 
 
 ![DockerSwarm_Logo]({{ site.baseurl }}/images/Docker_SwarmLogo.png)
