@@ -58,7 +58,7 @@ Previamente tenemos que tener instalado Docker en nuestro host.
 sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server
 ```
 
-Luego de ejecutar el comando, tendremos un contenedor corriendo con Rancher OS. Basicamente nos queda ingresar al servidor desde un navegador web http://<SERVER_IP>:8080.
+Luego de ejecutar el comando, tendremos un contenedor corriendo con Rancher OS. Basicamente nos queda ingresar al servidor desde un navegador web http://SERVER_IP:8080.
 
 Como mencionaba anteriormente, Rancher OS se puede instalar con HA, o tambien conectandolo a una base de datos externa como ser MYSQL.
 
