@@ -1,5 +1,5 @@
 ---
-title:  "Administracion de contenedores de Docker - Capitulo 1"
+title:  "Rancher OS - Capitulo 1"
 date:   2018-05-12 16:31:23
 categories: [Docker, RancherOS]
 tags: [Docker, DevOps, Contenedores, Images, RancherOS]
