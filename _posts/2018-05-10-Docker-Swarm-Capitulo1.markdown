@@ -35,9 +35,9 @@ Cuando creamos un servicio le indicamos a Swarm qué imagen y qué parametrizaci
 
 Existen dos tipos de servicios, replicados y globales:
 
-	En un servicio replicado, Swarm creará una tarea por cada réplica que le indiquemos para después distribuirlas en el clúster. Por ejemplo, si creamos un servicio con 4 réplicas, Swarm creará 4 tareas.
+**En un servicio replicado, Swarm creará una tarea por cada réplica que le indiquemos para después distribuirlas en el clúster. Por ejemplo, si creamos un servicio con 4 réplicas, Swarm creará 4 tareas.**
 
-	En un servicio global, Swarm ejecutará una tarea en cada uno de los nodos del clúster.
+**En un servicio global, Swarm ejecutará una tarea en cada uno de los nodos del clúster.**
 
 Como hemos dicho antes, las tareas son la unidad de trabajo dentro de Swarm. Realmente son la suma de un contenedor más el comando que ejecutaremos dentro de ese contenedor.
 
