@@ -23,7 +23,7 @@ La plataforma cuenta con un apartado Hosts para gestionar de forma visual las m�
 
 La abstracción que da de todas las peculiaridades de cada cloud supone una gran ventaja ya que desde un punto de vista del desarrollador apenas necesita conocimientos de sistemas para poder levantar instancias en Amazon o Azure, por ejemplo.
 
-![RancherOS_Consola_Host]({{ site.baseurl }}/images/rancheros_01.png)
+![RancherOS_Consola_Host]({{ site.baseurl }}/images/rancheros_01.PNG)
 
 **2. Entornos**
 
@@ -35,7 +35,7 @@ Para poder tener todos estos entornos funcionando se ha de invertir varias horas
 ***-Elegir el orquestador de containers de entre Cattle, Mesos, Kubernetes y Docker Swarm.***
 ***-Administrar usuarios y roles para los distintos entornos.***
 
-![RancherOS_Consola_Env]({{ site.baseurl }}/images/rancheros_02.png)
+![RancherOS_Consola_Env]({{ site.baseurl }}/images/rancheros_02.PNG)
 
 **3. Aplicaciones**
 
@@ -43,7 +43,7 @@ Rancher organiza las aplicaciones o servicios en Stacks; siempre que se quiere d
 
 Otro de los aspectos más importantes de Rancher es su catálogo de aplicaciones. Este catálogo es público, la comunidad open source puede contribuir con sus aplicaciones para que todos los usuarios de Rancher Community. También ofrece la posibilidad de tener catálogo de aplicaciones privado.
 
-![RancherOS_Consola_Catalogo]({{ site.baseurl }}/images/rancheros_03.png)
+![RancherOS_Consola_Catalogo]({{ site.baseurl }}/images/rancheros_03.PNG)
 
 **4. El espacio**
 
@@ -71,7 +71,7 @@ Basta con agregar los host´s desde la consola de Rancher OS, siguiendo estos pa
 **2. Segimos los pasos que nos marca el asistente para instalar el agente en el host**
 **3. Corremos el comando en el host que queremos que Rancher OS administre**
 
-![RancherOS_Consola_Host]({{ site.baseurl }}/images/rancheros_01.png)
+![RancherOS_Consola_Host]({{ site.baseurl }}/images/rancheros_01.PNG)
 
 ### Environments ###
 
@@ -83,7 +83,7 @@ Para crear un cluster de Docker Swarm, tenemos que seguir estos pasos:
 **3. Seleccionamos que cluster queremos administrar, Docker Swarm, Kubernetes, Mesos, etc.
 **4. Por ultimo, seleccionamos la opción Create.**
 
-![RancherOS_Consola_Env]({{ site.baseurl }}/images/rancheros_02.png)
+![RancherOS_Consola_Env]({{ site.baseurl }}/images/rancheros_02.PNG)
 
 Siguiendo estos pasos tendremos un cluster creado y administrado mediante Rancher OS. En los proximos capítulos les voy a mostrar mas sobre esta poderosa herramienta.
 
