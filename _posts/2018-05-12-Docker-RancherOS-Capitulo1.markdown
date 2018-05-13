@@ -98,8 +98,13 @@ Siguiendo estos pasos tendremos un cluster creado y administrado mediante Ranche
 
 ### Links de interés: ###
 
+[Rancher OS - Capítulo 2][RancherOS2]
+
 [Docker Official Page][Docker]
+
 [Rancher OS Official Page][RancherOS]
+
+[RancherOS2]: http://blog.mauriciovillagran.uy/2018/Docker-RancherOS-Capitulo2/
 
 [Docker]: https://www.docker.com/
 
