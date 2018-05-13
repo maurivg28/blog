@@ -34,11 +34,7 @@ Aquí veremos graficamente lo que les mencionaba anteriormente, el tipo de infra
 
 ### Manos a la obra ###
 
-Les dejo el link al video en el cual verán en acción toda esta maravilla.
-
-[Video - Rancher OS y Swarm en acción][Video]
-
-[Video]: https://youtu.be/gEpNyVgQkU8
+En el siguiente video veremos en acción estas fabulosas herramientas.
 
 {%include youtubePlayer.html id="gEpNyVgQkU8"%}
 
@@ -50,6 +46,10 @@ En una próxima entrega les estaré hablando de la nueva version de Rancher OS, 
 
 [Rancher OS Official Page][RancherOS]
 
+[Video - Rancher OS y Swarm en acción][Video]
+
 [Docker]: https://www.docker.com/
 
 [RancherOS]: https://rancher.com/rancher-os/
+
+[Video]: https://youtu.be/gEpNyVgQkU8
