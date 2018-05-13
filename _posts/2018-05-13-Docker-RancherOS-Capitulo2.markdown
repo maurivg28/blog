@@ -6,7 +6,7 @@ tags: [Docker, DevOps, Contenedores, Images, RancherOS, Swarm]
 ---
 Continuando con el mundo de los contenedores y esta fabulosa herramienta llamada Rancher OS. Hoy les voy a mostrar de forma práctica como funciona la herramienta. Vamos a crear una insfraestructura montada en la nube de Microsoft Azure, la cual tendra los siguienes componentes:
 - Balanceador externo de carga.
-- Agrupo de disponibilidad para las maquinas virtuales.
+- Grupo de disponibilidad para las maquinas virtuales.
 - Cuatro maquinas con Ubuntu 16.04 LTS.
 - Docker, Swarm, y rancher OS.
 - Como contenedor de pruebas desplegaremos un Apache con Nginx.
