@@ -40,7 +40,7 @@ Les dejo el link al video en el cual verán en acción toda esta maravilla.
 
 [Video]: https://youtu.be/gEpNyVgQkU8
 
-<iframe src="https://youtu.be/gEpNyVgQkU8" width="640" height="360" frameborder="0" ></iframe>
+{ % include youtubePlayer.html id="gEpNyVgQkU8" %}
 
 En una próxima entrega les estaré hablando de la nueva version de Rancher OS, la cual nos permite crear clusters en la nube y esta pensada para administrar cluster con Kubernetes.
 
