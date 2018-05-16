@@ -338,6 +338,8 @@ Ejecutando el template anterior, estaremos creando una maquina virtual a partir 
 
 ### Video ###
 
+{%include youtubePlayer.html id="8FM2bG3SZsA&t"%}
+
 [Packer Demo][Packer_Demo]
 
 [Packer_Demo]: https://www.youtube.com/watch?v=8FM2bG3SZsA&t=128s

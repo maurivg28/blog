@@ -151,10 +151,8 @@ En próximas ediciones les voy a mostrar como desplegar un cluster de kubernetes
 
 [Rancher OS Official Page][RancherOS]
 
-[Video - Rancher OS y Swarm en acción][Video]
-
 [Docker]: https://www.docker.com/
 
 [RancherOS]: https://rancher.com/rancher-os/
 
-[Video]: https://youtu.be/gEpNyVgQkU8
+

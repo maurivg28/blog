@@ -51,5 +51,3 @@ En una próxima entrega les estaré hablando de la nueva version de Rancher OS, 
 [Docker]: https://www.docker.com/
 
 [RancherOS]: https://rancher.com/rancher-os/
-
-[Video]: https://youtu.be/gEpNyVgQkU8
