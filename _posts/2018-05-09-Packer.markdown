@@ -338,7 +338,7 @@ Ejecutando el template anterior, estaremos creando una maquina virtual a partir 
 
 ### Video ###
 
-{%include youtubePlayer.html id="8FM2bG3SZsA&t"%}
+{%include youtubePlayer.html id="8FM2bG3SZsA"%}
 
 [Packer Demo][Packer_Demo]
 
