@@ -140,7 +140,9 @@ En próximas ediciones les voy a mostrar como desplegar un cluster de kubernetes
 
 {%include youtubePlayer.html id="BbYKKENSRd8"%}
 
+
 ***Parte 2 - Creacion de los contenedores.***
+
 
 {%include youtubePlayer.html id="3YqvpxuIIhM"%}
 
