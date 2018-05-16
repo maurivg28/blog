@@ -136,11 +136,11 @@ En el video, verán como se configura un cluster de Kubernetes montado en Azure 
 
 En próximas ediciones les voy a mostrar como desplegar un cluster de kubernetes como servicio sobre Azure.
 
-Parte 1 - Creacion del cluster.
+***Parte 1 - Creacion del cluster.***
 
 {%include youtubePlayer.html id="BbYKKENSRd8"%}
 
-Parte 2 - Creacion de los contenedores.
+***Parte 2 - Creacion de los contenedores.***
 
 {%include youtubePlayer.html id="3YqvpxuIIhM"%}
 
