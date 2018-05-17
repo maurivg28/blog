@@ -15,6 +15,16 @@ En este capitulo les voy a hablar, entre otras cosas, de Rancher OS. El orquesta
 Rancher es una plataforma (PaaS, Platform as a Service) open source que corre en Docker. Permite desplegar aplicaciones en container en cualquier infraestructura en producción, apoyándose en herramientas open source.
 En la parte de orquestación de containers, implementa varias soluciones pudiendo elegir entre Docker Swarm, Kubernetes o Mesos.
 
+## ¿Esta diseñado? ##
+
+Rancher es un peueño sistema operatvo montado en un contenedor de **Docker**. Este sistema operativo realiza únicamente dos instancias, la primera instancia con **PID 1** se encarga de llamar al sistema de Docker, y este sistema se encarga de llamar a **“User Docker”**. Este **“User Docker”** es simplemente una instancia primaria que se crea para ejecutar los contenedores, esta subdivisión se ha realizado para evitar que cualquier usuario no tenga permitido borrar el sistema operativo entero, el **“System Docker”**. De esta forma, un usuario podrá eliminar cualquier contenedor del sistema pero no podrá borrar el System Docker.
+
+![RancherOS_Diagrama]({{ site.baseurl }}/images/rancheros_05.PNG)
+
+Tal y como se puede ver en el diagrama anterior, en RancherOS primero tenemos el **Kernel de Linux** y a continuación el sistema de **Docker con PID 1** que a su vez tiene varios contenedores que realizan una función determinada, como por ejemplo DHCP, terminal de órdenes etc. Asimismo, en esta parte también tenemos el propio Docker para que el usuario pueda añadir posteriormente contenedores al sistema operativo y empezar a construir su infraestructura. A continuación podemos ver otro esquema de cómo funciona RancherOS con Docker:
+
+![RancherOS_Diagrama2]({{ site.baseurl }}/images/rancheros_07.jpg)
+
 ### Los puntos fuertes de Rancher OS ###
 
 **1. Infraestructura**
