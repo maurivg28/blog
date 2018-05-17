@@ -46,6 +46,11 @@ En una próxima entrega les estaré hablando de la nueva version de Rancher OS, 
 
 [Rancher OS Official Page][RancherOS]
 
+[Rancher OS Capítulo 3][RancherOSCap3]
+
+
 [Docker]: https://www.docker.com/
 
 [RancherOS]: https://rancher.com/rancher-os/
+
+[RancherOSCap3]:http://blog.mauriciovillagran.uy/2018/Docker-RancherOS-Capitulo3/
