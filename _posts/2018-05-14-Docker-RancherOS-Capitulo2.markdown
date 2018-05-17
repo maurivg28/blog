@@ -46,8 +46,6 @@ En una próxima entrega les estaré hablando de la nueva version de Rancher OS, 
 
 [Rancher OS Official Page][RancherOS]
 
-[Video - Rancher OS y Swarm en acción][Video]
-
 [Docker]: https://www.docker.com/
 
 [RancherOS]: https://rancher.com/rancher-os/
