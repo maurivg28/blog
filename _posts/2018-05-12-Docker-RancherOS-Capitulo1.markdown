@@ -17,7 +17,7 @@ En la parte de orquestación de containers, implementa varias soluciones pudiend
 
 ## ¿Cómo Esta diseñado? ##
 
-Rancher es un peueño sistema operatvo montado en un contenedor de **Docker**. Este sistema operativo realiza únicamente dos instancias, la primera instancia con **PID 1** se encarga de llamar al sistema de Docker, y este sistema se encarga de llamar a **“User Docker”**. Este **“User Docker”** es simplemente una instancia primaria que se crea para ejecutar los contenedores, esta subdivisión se ha realizado para evitar que cualquier usuario no tenga permitido borrar el sistema operativo entero, el **“System Docker”**. De esta forma, un usuario podrá eliminar cualquier contenedor del sistema pero no podrá borrar el System Docker.
+Rancher es un pequeño sistema operatvo montado en un contenedor de **Docker**. Este sistema operativo realiza únicamente dos instancias, la primera instancia con **PID 1** se encarga de llamar al sistema de Docker, y este sistema se encarga de llamar a **“User Docker”**. Este **“User Docker”** es simplemente una instancia primaria que se crea para ejecutar los contenedores, esta subdivisión se ha realizado para evitar que cualquier usuario no tenga permitido borrar el sistema operativo entero, el **“System Docker”**. De esta forma, un usuario podrá eliminar cualquier contenedor del sistema pero no podrá borrar el System Docker.
 
 ![RancherOS_Diagrama]({{ site.baseurl }}/images/rancheros_05.PNG)
 
