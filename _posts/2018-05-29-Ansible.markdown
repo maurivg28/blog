@@ -149,7 +149,7 @@ tenant=72f988bf-86f1-41af-91ab-2d7cd011db47
 
 Con un editor de textos generamos el archivo LinuxVm.yml el cual tendra la siguiente receta para crear nuestra VM en Azure.
 
-```bash
+```yaml
 - name: Create Azure VM
   hosts: localhost
   connection: local
