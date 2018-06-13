@@ -1,7 +1,7 @@
 ---
 title:  "Move Managed Disk with PowerSHell"
 date:   2018-06-13 19:30:00
-categories: [Ansible]
+categories: [PowerShell]
 tags: [PowerSHell, Azure, Cloud, Microsoft, DevOps]
 ---
 Hoy en dia, para los que administramos ambientes de nube, alguna vez nos ha tocado mover maquinas virtuales y nos hemos encontramos con que al ejecutar dicha tarea aparecen varios errores.
