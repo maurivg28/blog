@@ -4,7 +4,7 @@ date:   2018-06-13 19:30:00
 categories: [PowerShell]
 tags: [PowerShell, Azure, Cloud, Microsoft, DevOps]
 ---
-Hoy en dia, para los que administramos ambientes de nube, alguna vez nos ha tocado mover maquinas virtuales y nos hemos encontramos con que al ejecutar dicha tarea aparecen varios errores.
+Hoy en dia, para los que administramos ambientes de nube, alguna vez nos ha tocado mover maquinas virtuales y nos hemos encontramos con que al ejecutar dicha tarea aparecen varios errores, entre ellos el siguiente: ***"Creating a virtual machine from Marketplace image requires Plan information in the request"***
 Les voy a hablar sobre como copiar discos administrados, ya sea desde una suscripcion a otra o dentro de la misma suscripcion, desde un recurso a otro... Pero con el condimento de que vamos a mover una maquina creada desde un proveedor de terceros, por ejemplo Gitlab Comunity.
 
 ## Introducción ##
