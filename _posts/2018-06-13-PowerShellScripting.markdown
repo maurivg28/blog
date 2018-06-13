@@ -1,5 +1,5 @@
 ---
-title:  "PowerShell"
+title:  "Move Managed Disk with PowerShell"
 date:   2018-06-13 19:30:00
 categories: [PowerShell]
 tags: [PowerShell, Azure, Cloud, Microsoft, DevOps]
