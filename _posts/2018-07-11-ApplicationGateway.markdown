@@ -46,11 +46,11 @@ Por ejemplo, todos los request que son para ```http://blog.mvillagran.com/video/
 Un escenario muy comun es cuando tenemos multiples aplicaciones web, las cuales atienden diferentes URL y ademas atienden tanto en HTTP como en HTTP, y queremos que todo el trafico sea ruteado por un camino seguro y encriptado.
 Con Application Gateway no solo podemos redireccionar trafico HTTP hacia HTTPS sino que tambien tiene otras caracteristicas como:
 
-[ * ] Redireccion global desde un puerto hacia otro puerto, claro ejemplo que mencionaba anteriormente HTTP hacia HTTPS.
+- Redireccion global desde un puerto hacia otro puerto, claro ejemplo que mencionaba anteriormente HTTP hacia HTTPS.
 
-[ * ] Redireccion hacia un path, por ejemplo no solo podemos redireccionar un sitio de HTTP hacia HTTPS, sino que tambien a un area especifica del sitio como ser ```/services/*```
+- Redireccion hacia un path, por ejemplo no solo podemos redireccionar un sitio de HTTP hacia HTTPS, sino que tambien a un area especifica del sitio como ser ```/services/*```
 
-[ * ] Reddireccion hacia un sitio externo.
+- Redireccion hacia un sitio externo.
 
 ### Multiple Site Hosting ###
 
@@ -73,13 +73,13 @@ Web application firewall (WAF) es una feature que contamos con este servicio, la
 
 WAF nos proteje de:
 
-[ * ] Ataques usados con tecnicas de exploits.
+- Ataques usados con tecnicas de exploits.
 
-[ * ] SQL Injection.
+- SQL Injection.
 
-[ * ] Cross site scripting.
+- Cross site scripting.
 
-[ * ] Ataques al codigo de la aplicacion.
+- Ataques al codigo de la aplicacion.
 
 Es una caracteristica la cual debemos despreocuparnos ya que no requiere administracion, todos los parches, monitoreo y reglas corre por cuenta de Microsoft. Esto nos garantiza y no da la tranquilidad de que nuestras aplicaciones estaran protegidas. 
 
