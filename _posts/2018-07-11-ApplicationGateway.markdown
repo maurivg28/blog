@@ -10,16 +10,16 @@ Hoy vamos a hablar de Azure Application Gateway.
 
 ## Que nos ofrece Azure Application Gateway? ##
 
-[ * ] Servicio escalable y de alta disponibilidad.
+[ * ] ***Servicio escalable y de alta disponibilidad.***
 Application gateway nos proporciona un servicio de equilibrio de carga y enrutamiento a nivel de aplicacion que permiten crear sistemas front-end web escalables y de alta disponibilidad en Azure.
 
-[ * ] Web Application Firewall.
+[ * ] ***Web Application Firewall.***
 Nos ofrece un servicio de firewall que proteje a nuestras aplicaciones ante vulnerabilidades web y de seguridad habituales como inyección de código SQL o filtros entre sitios.
 
-[ * ] Front-end web eficiente y seguro.
+[ * ] ***Front-end web eficiente y seguro.***
 Permite manejar certificados lo cual garantiza un front end web mucho mas seguro.
 
-[ * ] Perfecta integración con los servicios de Azure
+[ * ] ***Perfecta integración con los servicios de Azure***
 Application Gateway facilita la integración con Azure Traffic Manager para permitir el redireccionamiento entre varias regiones, la conmutación por error automática y el mantenimiento sin tiempo de inactividad. Application Gateway se integra también con Azure Load Balancer para ofrecer escalado horizontal y alta disponibilidad de sistemas front-end web, tanto internos como para Internet.
 
 ## Que es? ##
@@ -27,7 +27,7 @@ Application Gateway facilita la integración con Azure Traffic Manager para perm
 Application Gateway es un balanceador web capaz que administrar el trafico hacia las aplicaciones web.
 
 A diferencia de los balanceadores tradicionales que trabajan a nivel de la capa de transporte (Capa 4 TCP y UDP),  ruteaando el trafico basado en una ip de origen y puerto, hacia una ip y puerto de destino. 
-Application Gateway nos permite ser mas especificos. Por ejemplo, podemos rutear trafico hacia una URL especifica. Entonces, si los usuarios quieren acceder a /images, podremos rutear dicho trafico a un pool de servidores configurados especificamente para contener imagenes. Si los usuarios quieren acceder a /video, podemos rutear dicho trafico a un pool de servidores epecificos, optimizados para videos.
+Application Gateway nos permite ser mas especificos. Por ejemplo, podemos rutear trafico hacia una URL especifica. Entonces, si los usuarios quieren acceder a ***/images***, podremos rutear dicho trafico a un pool de servidores configurados especificamente para contener imagenes. Si los usuarios quieren acceder a ***/video***, podemos rutear dicho trafico a un pool de servidores epecificos, optimizados para videos.
 
 ![Application_GatewayEsquema]({{ site.baseurl }}/images/ApplicationGW_Esquema.png)
 
@@ -38,7 +38,7 @@ Application Gateway trabaja a nivel de la capa de aplicacion (Capa 7). Ademas de
 El ruteo a nivel de URL permite rutear el trafico hacia el pools servidores back-end basado en la URL o el Path hacia donde el usuario quiere acceder.
 Uno de los escenarios mas comunes es el ruteo del trafico hacia diferentes poll's de servidores back-end.
 
-Por ejemplo, todos los request que son para 'http://blog.mvillagran.com/video/*' seran ruteados hacia los pools de servidores de Video, y los request para 'http://blog.mvillagran.com/images/*' seran ruteados hacia los pools de servidores de Imagenes. Todos los demas request que no machean con las anteriores iran a una regla por defecto.
+Por ejemplo, todos los request que son para ```http://blog.mvillagran.com/video/*``` seran ruteados hacia los pools de servidores de Video, y los request para ```http://blog.mvillagran.com/images/*``` seran ruteados hacia los pools de servidores de Imagenes. Todos los demas request que no machean con las anteriores iran a una regla por defecto.
 
 
 ### Redireccion ###
@@ -47,14 +47,16 @@ Un escenario muy comun es cuando tenemos multiples aplicaciones web, las cuales 
 Con Application Gateway no solo podemos redireccionar trafico HTTP hacia HTTPS sino que tambien tiene otras caracteristicas como:
 
 [ * ] Redireccion global desde un puerto hacia otro puerto, claro ejemplo que mencionaba anteriormente HTTP hacia HTTPS.
-[ * ] Redireccion hacia un path, por ejemplo no solo podemos redireccionar un sitio de HTTP hacia HTTPS, sino que tambien a un area especifica del sitio como ser ' /services/* '
+
+[ * ] Redireccion hacia un path, por ejemplo no solo podemos redireccionar un sitio de HTTP hacia HTTPS, sino que tambien a un area especifica del sitio como ser ```/services/*```
+
 [ * ] Reddireccion hacia un sitio externo.
 
 ### Multiple Site Hosting ###
 
-Application Gateway, permite alojar varios sitios diferentes en una misma instancia del servicio. Permite que podamos configurar hasta 20 sitios en una misma instancia. Por ejemplo, podemos alojar dos servicios diferentes, uno http://autos.com y otro http://motos.com y cada uno de ellos corresponde a un pools de servidores back-end diferentes.
+Application Gateway, permite alojar varios sitios diferentes en una misma instancia del servicio. Permite que podamos configurar hasta 20 sitios en una misma instancia. Por ejemplo, podemos alojar dos servicios diferentes, uno ```http://autos.com``` y otro ```http://motos.com``` y cada uno de ellos corresponde a un pools de servidores back-end diferentes.
 
-Los requests para http://autos.com seran ruteados hacia el pool de servidores back-end AutosServerPool, y los request para http://motos.com seran ruteados hacia el pool MotosServerPool.
+Los requests para ```http://autos.com``` seran ruteados hacia el pool de servidores back-end ***AutosServerPool***, y los request para ```http://motos.com``` seran ruteados hacia el pool ***MotosServerPool***.
 
 ### Session Affinity ###
 
@@ -72,8 +74,11 @@ Web application firewall (WAF) es una feature que contamos con este servicio, la
 WAF nos proteje de:
 
 [ * ] Ataques usados con tecnicas de exploits.
+
 [ * ] SQL Injection.
+
 [ * ] Cross site scripting.
+
 [ * ] Ataques al codigo de la aplicacion.
 
 Es una caracteristica la cual debemos despreocuparnos ya que no requiere administracion, todos los parches, monitoreo y reglas corre por cuenta de Microsoft. Esto nos garantiza y no da la tranquilidad de que nuestras aplicaciones estaran protegidas. 
