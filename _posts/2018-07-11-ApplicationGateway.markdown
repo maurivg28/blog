@@ -10,16 +10,16 @@ Hoy vamos a hablar de Azure Application Gateway.
 
 ## Que nos ofrece Azure Application Gateway? ##
 
-[ * ] ***Servicio escalable y de alta disponibilidad.***
+-  ***Servicio escalable y de alta disponibilidad.***
 Application gateway nos proporciona un servicio de equilibrio de carga y enrutamiento a nivel de aplicacion que permiten crear sistemas front-end web escalables y de alta disponibilidad en Azure.
 
-[ * ] ***Web Application Firewall.***
+- ***Web Application Firewall.***
 Nos ofrece un servicio de firewall que proteje a nuestras aplicaciones ante vulnerabilidades web y de seguridad habituales como inyección de código SQL o filtros entre sitios.
 
-[ * ] ***Front-end web eficiente y seguro.***
+- ***Front-end web eficiente y seguro.***
 Permite manejar certificados lo cual garantiza un front end web mucho mas seguro.
 
-[ * ] ***Perfecta integración con los servicios de Azure***
+- ***Perfecta integración con los servicios de Azure***
 Application Gateway facilita la integración con Azure Traffic Manager para permitir el redireccionamiento entre varias regiones, la conmutación por error automática y el mantenimiento sin tiempo de inactividad. Application Gateway se integra también con Azure Load Balancer para ofrecer escalado horizontal y alta disponibilidad de sistemas front-end web, tanto internos como para Internet.
 
 ## Que es? ##
