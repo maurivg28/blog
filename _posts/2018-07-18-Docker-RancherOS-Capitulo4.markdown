@@ -1,5 +1,5 @@
 ---
-title:  "Rancher OS - Capitulo 4"
+title:  "Rancher OS - Capitulo 4 - Monitoreo de contenedores"
 date:   2018-07-18 13:26
 categories: [Docker, RancherOS, Swarm]
 tags: [Docker, DevOps, Contenedores, Images, RancherOS, Swarm]
