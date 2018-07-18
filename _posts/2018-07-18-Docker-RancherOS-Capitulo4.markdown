@@ -76,7 +76,9 @@ A continuación se presentan los atributos adicionales de cada solución de moni
 
 ![RancherOS_Monitoring_Solutions_comp_fig2]({{ site.baseurl }}/images/gord_monitoring_functionality_comparison-1024x640.png)
 
-En un próximo capítulo les voy a contar al detalle sobre la implementacion de monitoreo de contenedores llamada DataDog.
+En un próximos capítulos les voy a contar al detalle sobre la implementacion de alguna de estas 10 solcuiones de monitoreo de contenedores. 
+
+En eñ siguiente capítulo les voy a hablar sobre la implementación de DataDog.
 
 Espero que les sea útil este artículo.
 
