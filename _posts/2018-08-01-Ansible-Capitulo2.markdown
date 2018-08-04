@@ -65,7 +65,7 @@ Una manera que encontré para cumplir con el objectivo fue trabajar con un dicci
 
 Como se puede apreciar, en el siguiente ejemplo, utilizo para el playbook que se ejecuta dentro del rol el loop "with_dict" para recorrer el diccionario.
 
-```
+````bash
 - name: creo los applications pools
   win_iis_webapppool:
     name: "{{ item.value.name }}"
@@ -106,7 +106,7 @@ Como se puede apreciar, en el siguiente ejemplo, utilizo para el playbook que se
     - "{{ iis_front_settings }}"
   tags:
     - FrontEnd
-```
+````
 
 De esta manera queda solucuionado el problema de cargar varios valores diferenetes en un mismo sitio de iis y asociarle diferentes configuraciones.
 
