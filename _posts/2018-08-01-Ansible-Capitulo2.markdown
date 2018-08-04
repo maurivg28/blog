@@ -65,7 +65,7 @@ Una manera que encontré para cumplir con el objectivo fue trabajar con un dicci
 
 Como se puede apreciar, en el siguiente ejemplo, utilizo para el playbook que se ejecuta dentro del rol el loop "with_dict" para recorrer el diccionario.
 
-````bash
+````text
 - name: creo los applications pools
   win_iis_webapppool:
     name: "{{ item.value.name }}"
