@@ -17,7 +17,7 @@ Ansible es una herramienta open-source desarrollada en python. Actualmente la de
 El objectivo era el siguiente:
 - Realizar diferentes configuraciones a nivel de sistema operativo, como ser: creación de usuario, cambio de zona horaria, configuración de archivo host.
 - Instalacion de Git y clonado del repositorio correspondiente dependiendo si es FrontEnd o BackEnd.
-- Desplegar la configuracion correspondiente en el servidor FrontEnd y en el servidor BackEnd. Asimismo desplegar las configuraciones que tiene en común ambos servidores. Sumado a que se desplegaran estas configuraciones dependiendo del ambiente Producción o Staging.
+- Desplegar la configuracion correspondiente en el servidor FrontEnd y en el servidor BackEnd. Asimismo desplegar las configuraciones que tienen común ambos servidores. Sumado a que se desplegaran estas configuraciones dependiendo del ambiente Producción o Staging.
 
 ## Estructura de la solución ##
 
