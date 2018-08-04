@@ -65,7 +65,7 @@ Una manera que encontré para cumplir con el objectivo fue trabajar con un dicci
 
 Como se puede apreciar, en el siguiente ejemplo, utilizo para el playbook que se ejecuta dentro del rol el loop "with_dict" para recorrer el diccionario.
 
-```bash
+```yml
 - name: creo los applications pools
   win_iis_webapppool:
     name: "{{ item.value.name }}"
@@ -120,7 +120,7 @@ Luego dentro de cada rol cree tres playbooks, frontend.yml, backend.yml, main.ym
 
 - Dentro de main.yml, agrego las configuraciones que tendran en común ambos servidores, ya que ansible siempre lee primero los archivos llamados main.yml. El truco esta en que para que ansible sepa que configuracion aplicar, vamos a utilizar las siguientes conficiones:
 
-```bash
+```yml
 - include_tasks: frontend.yml
   when: server == "FrontEnd"
 
@@ -131,7 +131,7 @@ Luego dentro de cada rol cree tres playbooks, frontend.yml, backend.yml, main.ym
 Hasta acá podemos ejecutar playbooks creados en ansible, los cuales desplegaran diferentes configuraciones, usando diferentes roles y aplicando las mismas tanto para un servidor como para otro, dependiendo del tipo de servidor.
 Luego a nivel del playbook, vamos a invocar los diferentes roles llamando a su variable correspondiente (FrontEnd o BackEnd).
 
-```bash
+```yml
 - hosts: front_production
   roles:
     - { role: iis }
