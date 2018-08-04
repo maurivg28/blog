@@ -128,7 +128,7 @@ Luego dentro de cada rol cree tres playbooks, frontend.yml, backend.yml, main.ym
   when: server == "BackEnd"
 ```
 
-Hasta acá podemos ejecutar playbooks creados en ansible, los cuales desplegaran diferente configuraciones, usando diferentes roles y aplicando las mismas tanto para un servidor como para otro, dependiendo del tipo de servidor.
+Hasta acá podemos ejecutar playbooks creados en ansible, los cuales desplegaran diferentes configuraciones, usando diferentes roles y aplicando las mismas tanto para un servidor como para otro, dependiendo del tipo de servidor.
 Luego a nivel del playbook, vamos a invocar los diferentes roles llamando a su variable correspondiente (FrontEnd o BackEnd).
 
 ```bash
