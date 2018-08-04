@@ -4,7 +4,7 @@ date:   2018-08-01 21:46:00
 categories: [Ansible]
 tags: [Ansible, Azure, Cloud, Microsoft, DevOps]
 ---
-En el capítulo anterior tratamos los conceptos básicos de como funciona Ansible. En particular hoy les voy a contar sobre una automatización que tuve que desarrollar para una empresa de medios de pago, la cual tienen un sistema montado sobre servidores web con IIS (backend y frontend), varios sitios, certificados, diferentes url´s, diferentes ambientes (Producción y Staging), y que al momento de ejecutar el playbook sepa utilizar los valores que son destinados para FrontEnd o Backend, etc. Bastante complejo y divertido. Lo interesante de todo esto fue que pudimos aplicar bastantes opciones de las que Ansible nos ofrece.
+En el capítulo anterior tratamos los conceptos básicos sobre como funciona Ansible. En particular hoy les voy a contar sobre una automatización que tuve que desarrollar para una empresa de medios de pago, la cual tienen un sistema montado sobre servidores web con IIS (backend y frontend), varios sitios, certificados, diferentes url´s, diferentes ambientes (Producción y Staging), y que al momento de ejecutar el playbook sepa utilizar los valores que son destinados para FrontEnd o Backend, etc. Bastante complejo y divertido. Lo interesante de todo esto fue que pudimos aplicar bastantes opciones de las que Ansible nos ofrece.
 
 ![AnsibleLogo_Logo]({{ site.baseurl }}/images/Ansible_Logo.png)
 
