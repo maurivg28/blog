@@ -116,7 +116,7 @@ El segundo desafio con el que me enfrentaba, era que tenia que desplegar configu
 La solución fue crear dentro de cada rol de ansible, en la carpeta defaults un archivo de variables que tenga una variable vacia, la cual la vamos a llamar **server**.
 Luego dentro de cada rol cree tres playbooks, frontend.yml, backend.yml, main.yml. Ahora se los paso a detallar:
 
-- Dentro de frontend.yml y backend.yml agrego las configuraciones particulares de cada servidor.
+- Dentro de frontend.yml y backend.yml agrego las configuraciones particulares para cada servidor.
 
 - Dentro de main.yml, agrego las configuraciones que tendran en común ambos servidores, ya que ansible siempre lee primero los archivos llamados main.yml. El truco esta en que para que ansible sepa que configuracion aplicar, vamos a utilizar las siguientes conficiones:
 
