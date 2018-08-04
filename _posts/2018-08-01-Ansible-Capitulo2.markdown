@@ -65,48 +65,7 @@ Una manera que encontré para cumplir con el objectivo fue trabajar con un dicci
 
 Como se puede apreciar, en el siguiente ejemplo, utilizo para el playbook que se ejecuta dentro del rol el loop "with_dict" para recorrer el diccionario.
 
-````text
-- name: creo los applications pools
-  win_iis_webapppool:
-    name: "{{ item.value.name }}"
-    state: started
-    attributes:
-      managedRuntimeVersion: v4.0
-      managedPipelineMode: Integrated
-      processModel.identityType: SpecificUser
-      processModel.userName: "{{ application_pool_username }}"
-      processModel.password: "{{ application_pool_pass }}"
-      processModel.loadUserProfile: True
-  with_dict: "{{ iis_front_settings }}"
-  tags:
-    - FrontEnd
-
-- name: creo los sitios de IIS
-  win_iis_website:
-    name: "{{ item.value.name }}"
-    application_pool: "{{ item.value.application_pool }}"
-    physical_path: "{{ item.value.physical_path }}"
-    hostname: "{{ item.value.hostname }}"
-    state: started
-  with_dict: "{{ iis_front_settings }}"
-  tags:
-    - FrontEnd
-
-- name: agrego los HTTPS binding
-  win_iis_webbinding:
-    name: "{{ item.value.name }}"
-    protocol: https
-    port: "{{ item.value.port }}"
-    ip: '*'
-    host_header: "{{ item.value.host_header }}"
-    certificate_hash: "{{ item.value.certificate_hash }}"
-    ssl_flags: "{{ item.value.ssl_flags }}"
-    state: present
-  with_dict:
-    - "{{ iis_front_settings }}"
-  tags:
-    - FrontEnd
-````
+![AnsibleCode]({{ site.baseurl }}/images/Ansible_CodeC2.JPG)
 
 De esta manera queda solucuionado el problema de cargar varios valores diferenetes en un mismo sitio de iis y asociarle diferentes configuraciones.
 
@@ -120,7 +79,7 @@ Luego dentro de cada rol cree tres playbooks, frontend.yml, backend.yml, main.ym
 
 - Dentro de main.yml, agrego las configuraciones que tendran en común ambos servidores, ya que ansible siempre lee primero los archivos llamados main.yml. El truco esta en que para que ansible sepa que configuracion aplicar, vamos a utilizar las siguientes conficiones:
 
-```
+```yml
 - include_tasks: frontend.yml
   when: server == "FrontEnd"
 
@@ -131,7 +90,7 @@ Luego dentro de cada rol cree tres playbooks, frontend.yml, backend.yml, main.ym
 Hasta acá podemos ejecutar playbooks creados en ansible, los cuales desplegaran diferentes configuraciones, usando diferentes roles y aplicando las mismas tanto para un servidor como para otro, dependiendo del tipo de servidor.
 Luego a nivel del playbook, vamos a invocar los diferentes roles llamando a su variable correspondiente (FrontEnd o BackEnd).
 
-```
+```yml
 - hosts: front_production
   roles:
     - { role: iis }
