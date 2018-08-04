@@ -65,7 +65,7 @@ Una manera que encontré para cumplir con el objectivo fue trabajar con un dicci
 
 Como se puede apreciar, en el siguiente ejemplo, utilizo para el playbook que se ejecuta dentro del rol el loop "with_dict" para recorrer el diccionario.
 
-```yaml
+```bash
 - name: creo los applications pools
   win_iis_webapppool:
     name: "{{ item.value.name }}"
@@ -120,7 +120,7 @@ Luego dentro de cada rol cree tres playbooks, frontend.yml, backend.yml, main.ym
 
 - Dentro de main.yml, agrego las configuraciones que tendran en común ambos servidores, ya que ansible siempre lee primero los archivos llamados main.yml. El truco esta en que para que ansible sepa que configuracion aplicar, vamos a utilizar las siguientes conficiones:
 
-```yaml
+```bash
 - include_tasks: frontend.yml
   when: server == "FrontEnd"
 
@@ -131,8 +131,7 @@ Luego dentro de cada rol cree tres playbooks, frontend.yml, backend.yml, main.ym
 Hasta acá podemos ejecutar playbooks creados en ansible, los cuales desplegaran diferente configuraciones, usando diferentes roles y aplicando las mismas tanto para un servidor como para otro, dependiendo del tipo de servidor.
 Luego a nivel del playbook, vamos a invocar los diferentes roles llamando a su variable correspondiente (FrontEnd o BackEnd).
 
-```yaml
-
+```bash
 - hosts: front_production
   roles:
     - { role: iis }
@@ -141,8 +140,8 @@ Luego a nivel del playbook, vamos a invocar los diferentes roles llamando a su v
     - { role: certificates, server: 'FrontEnd' }
     - { role: iis_site, server: 'FrontEnd' }
     - { role: metricbeat-windows }
+````
 
-```
 En el ejemplo anterior estamos llamando a diferentes roles y ejecutando las diferentes tareas de cada rol para todos los servidores que actuaran como FrontEnd.
 
 Ahora... ¿que sucede cuando nos piden desplegar diferentes ambientes?
@@ -153,7 +152,7 @@ Ansible nos permite manejar los llamados "environments" para aplicar diferentes 
 Cómo podrán apreciar en el siguiente extracto de la estructura, podemos separar los diferentes ambientes. Dicha estructura contiene los archivos de variables con los valores correspondientes a cada ambiente.
 
 ```bash
-.
+
 ├── environments <- environment
 |    └── production
 |    |    └── group_vars
