@@ -89,6 +89,12 @@ Una vez que tenemos estos dos plugins configurados, vamos a pasar a configurar e
 
 {%include youtubePlayer.html id="jcgaaj4aoZM"%}
 
-[Azure Ansible Official Page][Ansible]
+## Links de interes ##
 
-[Ansible]: http://docs.ansible.com/ansible/latest/scenario_guides/guide_azure.html
+[Docs Ansible Official Page][Ansible]
+
+[Ansible]: https://docs.ansible.com/
+
+[Jenkins Official Page][Ansible]
+
+[Jenkins]: https://jenkins.io/
