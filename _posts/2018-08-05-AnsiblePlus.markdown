@@ -85,7 +85,7 @@ Para configurar el plugin de Git deben seguir los mismos pasos que usamos para c
 
 Una vez que tenemos estos dos plugins configurados, vamos a pasar a configurar el job o tarea. Les voy a dejar un video para que vean lo sencillo que es. Obviamente que jenkins nos permite generar ciclos mas complejos, pero la idea de este tutorial es mostrarles como lo hice funcionar con ansible.
 
-## Demistración ##
+## Creacion de una tarea ##
 
 {%include youtubePlayer.html id="jcgaaj4aoZM"%}
 
