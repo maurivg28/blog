@@ -12,9 +12,9 @@ Hace unas semanas que estamos resolviendo diferentes problemas de carga en una i
 
 Generar el autoescalado de una base de datos como servicio en Azure, es tan sencillo como contar con los siguientes "ingredientes":
 
-- Automation Account - Es un servicio de Azure el cual nos permite lanzar diferentes tipos de scripts, para esta esta cuenta debemos ejecutar una actualizacion de todos los modulos.
-- Servicio SMTP - En mi caso utilice un servicio de terceros que esta publicado en Azure llamado SendGrid, el cual te permite enviar hasta 25 mil mails por mes.
-- Script - Un script creado en PowerShell, utilizando las cmdlets disponibles para manejar una DB de SQL como servicio en Azure.
+- **Automation Account** - Es un servicio de Azure el cual nos permite lanzar diferentes tipos de scripts, para esta esta cuenta debemos ejecutar una actualizacion de todos los modulos.
+- **Servicio SMTP** - En mi caso utilice un servicio de terceros que esta publicado en Azure llamado SendGrid, el cual te permite enviar hasta 25 mil mails por mes.
+- **Script en PowerShell** - Un script creado en PowerShell, utilizando las cmdlets disponibles para manejar una DB de SQL como servicio en Azure.
 
 ## Funcionamiento ##
 
