@@ -24,7 +24,7 @@ Aqui tenemos un ejemplo claro del comando base por el cual va a nacer el script.
 
 En este ejemplo escalaremos a un plan Standard S2
 
-```
+```powershell
 PS C:\>Set-AzureRmSqlDatabase -ResourceGroupName "ResourceGroup01" -DatabaseName "Database01" -ServerName "Server01" -Edition "Standard" -RequestedServiceObjectiveName "S2"
 ResourceGroupName             : ResourceGroup01
 ServerName                    : Server01
