@@ -53,7 +53,7 @@ En un proximo capitulo les voy a estar comentando y compartiendo como me fue con
 
 ### Script de autoescalado V1.0 ###
 
-```
+```powershell
 #Script para autoescalado de SQL como servicio.
 #Autor: Mauricio Villagran.
 #Fecha: 20/8/2018
