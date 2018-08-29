@@ -4,7 +4,7 @@ date:   2018-08-28 21:46:00
 categories: [Powershell, Azure, SQL]
 tags: [PowerShell, Azure, Cloud, Microsoft, DevOps]
 ---
-Hace unas semanas que estamos resolviendo diferentes problemas de carga sobre una infraetsructura montada en Azure para un importante cliente. La infraestructura soporta una aplicacion web para medios de pago, hay dias que la infraestructura debe soportar mayor carga. Luego de un analisis con el equipo de infra de mi trabajo, vimos que era conveniente autoescalar la base de datos de sql como servicio, los dias en que hay mayor carga. Si bien en la comunidad Microsoft ya hay algunos script, decidi hacer uno a nuestra medida. La idea de este capitulo es mostrarles como funciona el script, y no ir al detalle de los demas servicios que he utilizado para que funcione.
+Hace unas semanas que estamos resolviendo diferentes problemas de carga en una infraetsructura montada en Azure para un importante cliente. La misma soporta una aplicacion web para medios de pago y hay dias que la infraestructura debe soportar mayor carga. Luego de un analisis, vimos que era conveniente autoescalar la base de datos de sql, en los dias en que la base de datos debera soportar mas carga. Si bien en la comunidad Microsoft ya hay algunos script, decidi hacer uno a nuestra medida. La idea de este capitulo es mostrarles como funciona el script y no ir al detalle de los demas servicios que he utilizado para que funcione.
 
 ![PowerShell_Logo]({{ site.baseurl }}/images/PowerShell_Logo.JPG)
 
