@@ -4,7 +4,7 @@ date:   2018-09-27 18:30:00
 categories: [Powershell, Azure, SQL]
 tags: [PowerShell, Azure, Cloud, Microsoft, DevOps]
 ---
-Continuando con las mejoras del script, tuve la necesidad de hacer algunas mejoras para que dicho script me avise si el job demora mas de "x" tiempo y ejecute un proceso de cancelacion.
+Continuando con las mejoras del script, tuve la necesidad de hacer algunas modificaciones para que dicho script me avise si el job demora mas de "x" tiempo o si el progreso se encuentra "colgado" y ejecute un proceso de cancelacion.
 Es por eso que continuando con lo que les explicaba en el captitulo 1, les voy a compartir esta segunda version mejorada del script.
 
 ![PowerShell_Logo]({{ site.baseurl }}/images/PowerShell_Logo.JPG)
@@ -294,6 +294,11 @@ Write-Output "Script finalizado.!" | timestamp
 
 Happy Scripting!!! :D
 ### Links de interés: ###
+
+[Autoescalado SQL Azure captitulo 1][Autoescalado SQL Azure captitulo 1]
+
+[AutoescaladoSQL Azure captitulo 1]:
+https://blog.mauriciovillagran.uy/2018/PowerShell_SQLAutoSacling/
 
 [Set-AzureRmSqlDatabase][Set-AzureRmSqlDatabase]
 
