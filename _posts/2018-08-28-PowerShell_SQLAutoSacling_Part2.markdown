@@ -295,11 +295,10 @@ Write-Output "Script finalizado.!" | timestamp
 Happy Scripting!!! :D
 ### Links de interés: ###
 
-[Autoescalado SQL Azure captitulo 1][Autoescalado SQL Azure captitulo 1]
+[Autoescalado SQL Azure captitulo 1][Autoescalado Cap1]
 
-[AutoescaladoSQL Azure captitulo 1]:
-https://blog.mauriciovillagran.uy/2018/PowerShell_SQLAutoSacling/
+[Autoescalado Cap1]: https://blog.mauriciovillagran.uy/2018/PowerShell_SQLAutoSacling/
 
 [Set-AzureRmSqlDatabase][Set-AzureRmSqlDatabase]
 
-[Set-AzureRmSqlDatabase]: https://docs.microsoft.com/en-us/powershell/module/azurerm.sql/set-azurermsqldatabase?view=azurermps-6.8.0
+[Set-AzureRmSqlDatabase]:https://docs.microsoft.com/en-us/powershell/module/azurerm.sql/set-azurermsqldatabase?view=azurermps-6.8.0
