@@ -72,7 +72,7 @@ Vamos a crear un directorio para nuestro proyecto:
 
 ```sh
 mkdir /ansible-container-demo
-cd ansible-container-demo
+cd /ansible-container-demo
 ```
 
 **Instalando Andible Container**
@@ -327,7 +327,9 @@ ansible-container run
 
 ¡Por Fin! Hemos utilizado satisfactoriamente Ansible para crear una aplicación de múltiples contenedores en Docker. La aplicación se divide en tres niveles: **Presentación (nginx), Lógica (flask) y Almacenamiento (redis)**, y es ideal para usar como base para iniciar sus propios proyectos.
 
+### Demo ###
 
+{%include youtubePlayer.html id="1hPisA4ORIU"%}
 
 ### Links de interés: ###
 
