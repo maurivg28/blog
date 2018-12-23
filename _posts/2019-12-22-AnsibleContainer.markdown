@@ -171,14 +171,14 @@ Para crear el playbook de Ansible, cree un nuevo archivo **main.yml** en el dire
 
 - name: Install APT Requirements
   apt:
-    name: "{{ item }}"
+    #name: "{{ item }}"
     state: present
   with_items:
     - "python-pip"
 
 - name: Install Pip Requirements
   pip:
-    name: "{{ item }}"
+    #name: "{{ item }}"
     state: present
   with_items:
     - "flask"
@@ -244,7 +244,7 @@ Luego, implementaremos el proceso para instalar y configurar el archivo de confi
 
 - name: Install APT Requirements
   apt:
-    name: "{{ item }}"
+    #name: "{{ item }}"
     state: present
   with_items:
     - "nginx"
