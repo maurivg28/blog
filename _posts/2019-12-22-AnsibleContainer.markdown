@@ -86,7 +86,7 @@ Ansible container se distribuye como un paquete basico, el cual podemos instalar
 En mi caso voy a instalar Ansible Container para el motor de Docker:
 
 ```sh
-pip install ansible-container[docker]
+pip install "ansible-container[docker]"
 ```
 
 Luego ejecutamos el siguiente comando:
