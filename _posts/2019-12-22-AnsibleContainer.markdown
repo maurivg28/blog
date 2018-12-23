@@ -160,7 +160,7 @@ if __name__ == "__main__":
 
 En nuestro playbook de ansible, se copiara el archivo **app.py** dentro de la imagen de docker y se instalaran todas las dependencias necesarias. Todo esto mientras se esta construyendo la imagen de docker.
 
-Para crear el playbook de Ansible, cree un nuevo archivo main.yml en el directorio **roles/flask/tasks** con el siguiente contenido:
+Para crear el playbook de Ansible, cree un nuevo archivo **main.yml** en el directorio **roles/flask/tasks** con el siguiente contenido:
 
 ```yaml
 ---
