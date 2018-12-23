@@ -75,7 +75,7 @@ mkdir /ansible-container-demo
 cd /ansible-container-demo
 ```
 
-**Instalando Andible Container**
+**Instalando Ansible Container**
 
 Ansible container se distribuye como un paquete basico, el cual podemos instalarlo para los siguientes motores de contenedores:
 
