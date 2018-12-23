@@ -162,7 +162,7 @@ En nuestro playbook de ansible, se copiara el archivo **app.py** dentro de la im
 
 Para crear el playbook de Ansible, cree un nuevo archivo **main.yml** en el directorio **roles/flask/tasks** con el siguiente contenido:
 
-```
+```python
 ---
 - name: Update APT Repositories
   apt:
@@ -200,7 +200,7 @@ Para crear el playbook de Ansible, cree un nuevo archivo **main.yml** en el dire
 
 Para configurar nuestra instancia de proxy Nginx, crearemos dinámicamente un archivo de configuración con nuestros parámetros deseados. Para crear la plantilla Nginx, cree un nuevo archivo **virtualhost.j2** en el directorio **roles/nginx/templates** con el siguiente contenido:
 
-```sh
+```python
 # THIS FILE IS MANAGED BY ANSIBLE
 worker_processes 1;
 
@@ -235,7 +235,7 @@ http {
 
 Luego, implementaremos el proceso para instalar y configurar el archivo de configuración de plantilla dentro de nuestro playbook de Ansible. Para crear el playbook, cree un nuevo archivo **main.yml** en el directorio **roles/nginx/tasks** con el siguiente contenido:
 
-```
+```python
 ---
 - name: Update APT
   apt:
@@ -263,7 +263,7 @@ Para organizar proyectos de múltiples contenedores, Ansible Container utiliza u
 
 Estudie el archivo container.yml a continuación, luego lo utilice como base para reemplazar el contenido del archivo container.yml en la raíz del proyecto.
 
-```
+```python
 # container.yml Syntax Version (don't change this)
 version: "2"
 settings:
