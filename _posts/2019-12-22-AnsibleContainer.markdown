@@ -4,7 +4,7 @@ date:   2018-12-23 23:00:00
 categories: [Ansible]
 tags: [Azure, Ansible, Containers]
 ---
-Hace un tiempo que vengo investigando todo lo relacionado al mundo de los contenedores. Todos sabemos las herramientas que Docker nos brinda para construir imagenes a traves de una Docker file. Buscando en la red, me preguntaba como seria automatizar encima de los contenedores y como hace bastante que trabajo con Ansible,
+Hace un tiempo que vengo investigando todo lo relacionado al mundo de los contenedores. Todos sabemos del potencial que Docker nos da para construir imagenes a traves de una Docker file. Buscando en la red, me preguntaba como seria automatizar encima de los contenedores y como hace bastante que trabajo con Ansible,
 se me ocurrio investigar si podia cumplir este objetivo. A continuacion les voy a hablar de Ansible Container.
 
 ![AnsibleContainer_Logo]({{ site.baseurl }}/images/Ansible-Container-Logo.png)
