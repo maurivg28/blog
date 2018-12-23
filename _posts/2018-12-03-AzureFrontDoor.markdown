@@ -1,7 +1,7 @@
 ---
 title:  "Azure Front Door"
 date:   2018-12-03 23:00:00
-categories: [Packer]
+categories: [Azure Front Door]
 tags: [Azure, CDN, LB, Firewall, WAF]
 ---
 En ocubre de 2018 Microsoft anuncio muchas novedades sobre nuevos productos que saldran y que estaran disponibles entre dicho mes y finales de año. Uno de ellos es Azure Front Door, un nuevo producto que combina caracteristicas de productos anteriores como ser, traffic manager, CDN, application gateway. Yo diria que es un "all in one".
