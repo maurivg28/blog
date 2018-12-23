@@ -162,7 +162,7 @@ En nuestro playbook de ansible, se copiara el archivo **app.py** dentro de la im
 
 Para crear el playbook de Ansible, cree un nuevo archivo **main.yml** en el directorio **roles/flask/tasks** con el siguiente contenido:
 
-:::python
+```python
 ---
 - name: Update APT Repositories
   apt:
@@ -194,7 +194,7 @@ Para crear el playbook de Ansible, cree un nuevo archivo **main.yml** en el dire
   copy:
     src: app.py
     dest: /app/app.py
-:::
+```
 
 **Nginx**
 
