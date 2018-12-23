@@ -7,15 +7,13 @@ tags: [Azure, Ansible, Containers]
 Hace un tiempo que vengo investigando todo lo relacionado al mundo de los contenedores. Todos sabemos las herramientas que Docker nos brinda para construir imagenes a traves de una Docker file. Buscando en la red, me preguntaba como seria automatizar encima de los contenedores y como hace bastante que trabajo con Ansible,
 se me ocurrio investigar si podia cumplir este objetivo. A continuacion les voy a hablar de Ansible Container.
 
-![AFD_Logo]({{ site.baseurl }}/images/frontdoor.png)
+![AnsibleContainer_Logo]({{ site.baseurl }}/images/Ansible-Container-Logo.png)
 
 
 ## Introducción ##
 
 Ansible Container, es un orquestador el cual nos permite crear imagenes para nuestros contenedores. En vez de crear un contenedor a traves de un docker file, podemos hacerlo a travez de un archivo YAML, aplicando todas las ventajas que nos ofrece Ansible, como ser invocar roles para aplicarlos a la imagen.
 Pero Ansible Container no se detiene ahi, tambien nos permite enviar las imagenes a registros publicos y privados.
-
-![AFD_Esquema]({{ site.baseurl }}/images/AFD_Esquema.png)
 
 ## Porque usar Ansible Container? ##
 
