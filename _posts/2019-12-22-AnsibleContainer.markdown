@@ -195,6 +195,7 @@ Para crear el playbook de Ansible, cree un nuevo archivo **main.yml** en el dire
     src: app.py
     dest: /app/app.py
 ```
+**Nota: Existe un error en el formato markdown por lo cual luego del campo name va "{{ item }}"**
 
 **Nginx**
 
