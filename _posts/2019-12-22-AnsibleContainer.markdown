@@ -162,7 +162,7 @@ En nuestro playbook de ansible, se copiara el archivo **app.py** dentro de la im
 
 Para crear el playbook de Ansible, cree un nuevo archivo **main.yml** en el directorio **roles/flask/tasks** con el siguiente contenido:
 
-```yaml
+```sh
 ---
 - name: Update APT Repositories
   apt:
@@ -235,7 +235,7 @@ http {
 
 Luego, implementaremos el proceso para instalar y configurar el archivo de configuración de plantilla dentro de nuestro playbook de Ansible. Para crear el playbook, cree un nuevo archivo **main.yml** en el directorio **roles/nginx/tasks** con el siguiente contenido:
 
-```yaml
+```sh
 ---
 - name: Update APT
   apt:
@@ -263,7 +263,7 @@ Para organizar proyectos de múltiples contenedores, Ansible Container utiliza u
 
 Estudie el archivo container.yml a continuación, luego lo utilice como base para reemplazar el contenido del archivo container.yml en la raíz del proyecto.
 
-```yaml
+```sh
 # container.yml Syntax Version (don't change this)
 version: "2"
 settings:
