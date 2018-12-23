@@ -68,6 +68,9 @@ Si bien la sintaxis de un docker file no es complicada, veremos que la sintaxis 
 
 **Nota:** Este ambiente esta generado sobre una maquina virtual (Ubuntu 18.04) con todos los requerimientos mencionados anteriormente. Asimismo toda la instalacion y configuracion se hizo con el usuario root.
 
+Si no quieren copiar y pegar el codigo que les voy a ir mostrando, pueden clonar directamente el proyecto.
+https://github.com/maurivg28/AnsibleContainerDemo
+
 Vamos a crear un directorio para nuestro proyecto:
 
 ```sh
