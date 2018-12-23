@@ -327,6 +327,28 @@ ansible-container run
 
 ¡Por Fin! Hemos utilizado satisfactoriamente Ansible para crear una aplicación de múltiples contenedores en Docker. La aplicación se divide en tres niveles: **Presentación (nginx), Lógica (flask) y Almacenamiento (redis)**, y es ideal para usar como base para iniciar sus propios proyectos.
 
+### Comandos utiles ###
+
+**ansible-container init**
+
+Creates files in the current directory to get you started. Read the comments, and edit to suit your needs.
+
+**ansible-container install**
+
+Downloads Ansible-Container-ready roles from Ansible Galaxy, and installs them in your project.
+
+**ansible-container build**
+
+Creates images from your Ansible playbooks.
+
+**ansible-container run**
+
+Launches the containers specified in the orchestration document, container.yml, for testing the built images. The format of container.yml is nearly identical to Docker Compose.
+
+**ansible-container deploy**
+
+Pushes the project's container images to a registry of your choice, and generates a playbook capable of deploying the project on a supported cloud provider.
+
 ### Demo ###
 
 {%include youtubePlayer.html id="1hPisA4ORIU"%}
