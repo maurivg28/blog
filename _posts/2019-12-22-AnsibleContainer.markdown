@@ -57,14 +57,16 @@ Aunque la estrategia de capas en Ansible Container no está clara en este moment
 Si bien la sintaxis de un docker file no es complicada, veremos que la sintaxis de ansible es mucho mas sencilla. Esto es uno de los puntos a favor por los cuales prefiero usar herramientas como estas.
 
 ## Manos a la obra ##
-
-Para esta guia vamos a necesitar tener instalados los siguientes paquetes en nuestro sistema operativo, en mi ejemplo voy a utilizar una vm con Ubuntu 16.04(Xenial) LTS:
+ Paquetes necesarios:
 
 - docker
 - python
 - python-pip (pip)
+- ansible
 
-*** Creando el ambiente ***
+** Creando el ambiente **
+
+** Nota: ** Este ambiente esta generado sobre una maquina virtual (Ubuntu 18.04) con todos los requerimientos mencionados anteriormente. Asimismo toda la instalacion y configuracion se hizo con el usuario root.
 
 Vamos a crear un directorio para nuestro proyecto:
 
@@ -73,7 +75,7 @@ mkdir /ansible-container-demo
 cd ansible-container-demo
 ```
 
-*** Instalando Andible Container ***
+** Instalando Andible Container **
 
 Ansible container se distribuye como un paquete basico, el cual podemos instalarlo para los siguientes motores de contenedores:
 
@@ -105,7 +107,7 @@ requirements.yml
 
 Podemos visitar la guia rapida que la pondre al final del articulo para ver mas en detalle la descripcion de cada archivo.
 
-*** Ansible roles ***
+** Ansible roles **
 
 Uno de los mayores beneficios de usar Ansible-Container sobre Dockerfiles y Docker Compose es la capacidad de construir contenedores fácilmente utilizando la sintaxis de Ansible.
 
@@ -136,7 +138,7 @@ La estructura del proyecto deberia quedar asi:
         └── templates
 ```
 
-*** Flask ***
+** Flask **
 
 Vamos a crear una aplicacion en flask muy sencilla, para ello cree un nuevo archivo app.py en el directorio roles / flask / files con el siguiente contenido:
 
@@ -194,7 +196,7 @@ Para crear el playbook de Ansible, cree un nuevo archivo main.yml en el director
     dest: /app/app.py
 ```
 
-*** Nginx ***
+** Nginx **
 
 Para configurar nuestra instancia de proxy Nginx, crearemos dinámicamente un archivo de configuración con nuestros parámetros deseados. Para crear la plantilla Nginx, cree un nuevo archivo virtualhost.j2 en el directorio roles/nginx/ templates con el siguiente contenido:
 
@@ -253,7 +255,7 @@ Luego, implementaremos el proceso para instalar y configurar el archivo de confi
     dest: /etc/nginx/nginx_ansible.conf
 ```
 
-*** Como funciona de proyecto? ***
+** Como funciona de proyecto? **
 
 Ahora que todos los archivos están en su lugar, podemos comenzar a unir el proyecto.
 
@@ -307,7 +309,7 @@ services:
     command: ["nginx", "-c", "/etc/nginx/nginx_ansible.conf", "-g", "daemon off;"]
 ```
 
-*** Ejecutando el proyecto ***
+** Ejecutando el proyecto **
 
 Finalmente, ahora podemos construir y ejecutar nuestros contenedores Docker. Hay que asegurarse de estar en el directorio raíz del proyecto y ejecutamos el siguiente comando:
 
@@ -321,9 +323,10 @@ El comando anterior procesará los playbooks y construirá las imágenes de Dock
 ansible-container run
 ```
 
-*** Final ***
+** Final **
 
 ¡Por Fin! Hemos utilizado satisfactoriamente Ansible para crear una aplicación de múltiples contenedores en Docker. La aplicación se divide en tres niveles: Presentación (nginx), Lógica (flask) y Almacenamiento (redis), y es ideal para usar como base para iniciar sus propios proyectos.
+
 
 
 ### Links de interés: ###
