@@ -7,6 +7,20 @@ tags: [Kubernetes, Containers, Docker]
 En este articulo pretendo hablar de manera ordenada sobre los conceptos basicos que hacen de kubernetes el orquestador de contenedores mas usado para orquestar aplicaciones que corren sobre contenedores.
 
 
+##Conceptos a tener en cuenta##
+
+- **Cluster:** Conjunto de máquinas físicas o virtuales que son utilizados por Kubernetes
+- **Pod:** es la unidad mínima de Kubernetes, realmente es un contenedor en jerga de Docker
+- **Labels y selectors:** son pares de claves y valores, las cuales se pueden aplicar a pods, services, replication controllers, etc…. y con ellos podremos identificarlos para poderlos gestionar.
+- **Node:** es el servidor ya sea virtual o físico que aloja el sistema de Kubernetes y donde vamos a desplegar nuestros pods (contenedores). Si buscáis información por internet, antiguamente se llamaban Minions.
+- **Replication Controller:** es el responsable de gestionar la vida de los pods y el encargado de mantener arrancados los pods que se le hayan indicado en la configuración. Permite escalar de forma muy sencilla los sistemas y maneja la recreación de un pod cuando ocurre algún tipo de fallo.
+- **Replica Sets:** Es la nueva generación del Replication Controller, con nuevas funcionalidades. Una de las funcionalidades destacadas es que nos permite desplegar pods en función de los labels y selectors
+- **Deployments:** Es donde e especifican la cantidad de réplicas de pods que tendremos en el sistema. Es una funcionalidad más avanzada que los Replication Controller y muy parecida a los Replciation Sets, pero con otras características.
+- **Namespaces:** son agrupaciones, en ellos podremos diferenciar espacios de trabajo para diferentes situaciones. Por ejemplo podríamos realizar un Namespace para producción y otro para desarrollo y cada Namespace tendría sus propios pods, replication controllers, etc….
+- **Volumes:** Es el acceso a un sistema de almacenamiento
+- **Secrets:** Es donde se guarda la información confidencial como usuarios y passwords, para poder acceder a los recursos.
+- **Service:** Es la política de acceso a los pods. Lo podríamos definir como la abstracción que define un conjunto de pods y la lógica para poder acceder a ellos.
+
 ## Que es kubernetes? ##
 
 Basicamente vamos a comenzar por una corta definicion y vamos a quedarnos con el concepto de "orquestador de contenedores"
