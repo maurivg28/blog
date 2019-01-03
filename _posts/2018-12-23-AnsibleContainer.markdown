@@ -4,7 +4,7 @@ date:   2018-12-23 23:00:00
 categories: [Ansible]
 tags: [Azure, Ansible, Containers]
 ---
-Hace un tiempo que vengo investigando todo lo relacionado al mundo de los contenedores. Todos sabemos las herramientas que Docker nos brinda para construir imagenes a traves de una Docker file. Buscando en la red, me preguntaba como seria automatizar encima de los contenedores y como hace bastante que trabajo con Ansible,
+Hace un tiempo que vengo investigando todo lo relacionado al mundo de los contenedores. Todos sabemos del potencial que Docker nos da para construir imagenes a traves de una Docker file. Buscando en la red, me preguntaba como seria automatizar encima de los contenedores y como hace bastante que trabajo con Ansible,
 se me ocurrio investigar si podia cumplir este objetivo. A continuacion les voy a hablar de Ansible Container.
 
 ![AnsibleContainer_Logo]({{ site.baseurl }}/images/Ansible-Container-Logo.png)
@@ -25,7 +25,7 @@ Ansible Container elimina el dolor de la ecuación y le permite crear directamen
 
 A continuacion veremos un ejemplo de como esta armado un docker file:
 
-``` 
+```sh
 RUN apt-get update && apt-get install -y \
     aufs-tools \
     automake \
@@ -43,7 +43,7 @@ RUN apt-get update && apt-get install -y \
 ```
 Ahora veremos que podemos usar los roles de Ansible y, por lo tanto, utilizar completamente los beneficios de las variables, las plantillas y los módulos para obtener algo con una sintaxis intuitiva, como esto:
 
-```
+```yaml
 - name: Install Packages
   package:
       name: "{{ packages }}"
@@ -64,18 +64,21 @@ Si bien la sintaxis de un docker file no es complicada, veremos que la sintaxis 
 - python-pip (pip)
 - ansible
 
-** Creando el ambiente **
+**Creando el ambiente**
 
-** Nota: ** Este ambiente esta generado sobre una maquina virtual (Ubuntu 18.04) con todos los requerimientos mencionados anteriormente. Asimismo toda la instalacion y configuracion se hizo con el usuario root.
+**Nota:** Este ambiente esta generado sobre una maquina virtual (Ubuntu 18.04) con todos los requerimientos mencionados anteriormente. Asimismo toda la instalacion y configuracion se hizo con el usuario root.
+
+Si no quieren copiar y pegar el codigo que les voy a ir mostrando, pueden clonar directamente el proyecto.
+https://github.com/maurivg28/AnsibleContainerDemo
 
 Vamos a crear un directorio para nuestro proyecto:
 
-```
+```sh
 mkdir /ansible-container-demo
-cd ansible-container-demo
+cd /ansible-container-demo
 ```
 
-** Instalando Andible Container **
+**Instalando Ansible Container**
 
 Ansible container se distribuye como un paquete basico, el cual podemos instalarlo para los siguientes motores de contenedores:
 
@@ -85,19 +88,19 @@ Ansible container se distribuye como un paquete basico, el cual podemos instalar
 
 En mi caso voy a instalar Ansible Container para el motor de Docker:
 
-```
-pip install ansible-container[docker]
+```sh
+pip install "ansible-container[docker]"
 ```
 
 Luego ejecutamos el siguiente comando:
 
-```
+```sh
 ansible-container init
 ```
 
 El comando anterior deberia generar la siguiente estructura dentro de nuestra carpeta:
 
-```
+```sh
 ansible.cfg
 ansible-requirements.txt
 container.yml
@@ -107,7 +110,7 @@ requirements.yml
 
 Podemos visitar la guia rapida que la pondre al final del articulo para ver mas en detalle la descripcion de cada archivo.
 
-** Ansible roles **
+**Ansible roles**
 
 Uno de los mayores beneficios de usar Ansible-Container sobre Dockerfiles y Docker Compose es la capacidad de construir contenedores fácilmente utilizando la sintaxis de Ansible.
 
@@ -118,12 +121,12 @@ A continuacion vamos a crear los siguientes roles:
 
 Desde el directorio del proyecto, ejecutaremos el siguiente comando para crear los subdirectorios:
 
-```
+```sh
 mkdir -p roles/nginx/tasks roles/nginx/templates roles/flask/tasks roles/flask/files
 ```
 La estructura del proyecto deberia quedar asi:
 
-```
+```sh
 ├── ansible.cfg
 ├── container.yml
 ├── ansible-requirements.txt
@@ -138,7 +141,7 @@ La estructura del proyecto deberia quedar asi:
         └── templates
 ```
 
-** Flask **
+**Flask**
 
 Vamos a crear una aplicacion en flask muy sencilla, para ello cree un nuevo archivo app.py en el directorio roles / flask / files con el siguiente contenido:
 
@@ -158,11 +161,11 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
 ```
 
-En nuestro playbook de ansible, se copiara el archivo app.py dentro de la imagen de docker y se instalaran todas las dependencias necesarias. Todo esto mientras se esta construyendo la imagen de docker.
+En nuestro playbook de ansible, se copiara el archivo **app.py** dentro de la imagen de docker y se instalaran todas las dependencias necesarias. Todo esto mientras se esta construyendo la imagen de docker.
 
-Para crear el playbook de Ansible, cree un nuevo archivo main.yml en el directorio roles/flask/ tasks con el siguiente contenido:
+Para crear el playbook de Ansible, cree un nuevo archivo **main.yml** en el directorio **roles/flask/tasks** con el siguiente contenido:
 
-```yaml
+```python
 ---
 - name: Update APT Repositories
   apt:
@@ -178,7 +181,7 @@ Para crear el playbook de Ansible, cree un nuevo archivo main.yml en el director
 
 - name: Install Pip Requirements
   pip:
-    name: "{{ item }}"
+    #name: "{{ item }}"
     state: present
   with_items:
     - "flask"
@@ -196,11 +199,11 @@ Para crear el playbook de Ansible, cree un nuevo archivo main.yml en el director
     dest: /app/app.py
 ```
 
-** Nginx **
+**Nginx**
 
-Para configurar nuestra instancia de proxy Nginx, crearemos dinámicamente un archivo de configuración con nuestros parámetros deseados. Para crear la plantilla Nginx, cree un nuevo archivo virtualhost.j2 en el directorio roles/nginx/ templates con el siguiente contenido:
+Para configurar nuestra instancia de proxy Nginx, crearemos dinámicamente un archivo de configuración con nuestros parámetros deseados. Para crear la plantilla Nginx, cree un nuevo archivo **virtualhost.j2** en el directorio **roles/nginx/templates** con el siguiente contenido:
 
-```sh
+```python
 # THIS FILE IS MANAGED BY ANSIBLE
 worker_processes 1;
 
@@ -233,9 +236,9 @@ http {
 }
 ```
 
-Luego, implementaremos el proceso para instalar y configurar el archivo de configuración de plantilla dentro de nuestro playbook de Ansible. Para crear el playbook, cree un nuevo archivo main.yml en el directorio roles/nginx/ tasks con el siguiente contenido:
+Luego, implementaremos el proceso para instalar y configurar el archivo de configuración de plantilla dentro de nuestro playbook de Ansible. Para crear el playbook, cree un nuevo archivo **main.yml** en el directorio **roles/nginx/tasks** con el siguiente contenido:
 
-```yaml
+```python
 ---
 - name: Update APT
   apt:
@@ -255,15 +258,15 @@ Luego, implementaremos el proceso para instalar y configurar el archivo de confi
     dest: /etc/nginx/nginx_ansible.conf
 ```
 
-** Como funciona de proyecto? **
+**Como funciona de proyecto?**
 
 Ahora que todos los archivos están en su lugar, podemos comenzar a unir el proyecto.
 
-Para organizar proyectos de múltiples contenedores, Ansible Container utiliza un archivo con formato YAML, container.yml. Este archivo describe qué imágenes usar, qué contenedores ejecutar, atributos de contenedor y qué hacer con las imágenes creadas. Esto es muy similar a un archivo Docker Compose.
+Para organizar proyectos de múltiples contenedores, Ansible Container utiliza un archivo con formato YAML, **container.yml**. Este archivo describe qué imágenes usar, qué contenedores ejecutar, atributos de contenedor y qué hacer con las imágenes creadas. Esto es muy similar a un archivo Docker Compose.
 
 Estudie el archivo container.yml a continuación, luego lo utilice como base para reemplazar el contenido del archivo container.yml en la raíz del proyecto.
 
-```yaml
+```python
 # container.yml Syntax Version (don't change this)
 version: "2"
 settings:
@@ -309,25 +312,49 @@ services:
     command: ["nginx", "-c", "/etc/nginx/nginx_ansible.conf", "-g", "daemon off;"]
 ```
 
-** Ejecutando el proyecto **
+**Ejecutando el proyecto**
 
 Finalmente, ahora podemos construir y ejecutar nuestros contenedores Docker. Hay que asegurarse de estar en el directorio raíz del proyecto y ejecutamos el siguiente comando:
 
-```
+```sh
 ansible-container build
 ```
 
 El comando anterior procesará los playbooks y construirá las imágenes de Docker. Una vez que se haya completado con éxito, podemos correr el contenedor con el siguiente comando:
 
-```
+```sh
 ansible-container run
 ```
 
-** Final **
+**Final**
 
-¡Por Fin! Hemos utilizado satisfactoriamente Ansible para crear una aplicación de múltiples contenedores en Docker. La aplicación se divide en tres niveles: Presentación (nginx), Lógica (flask) y Almacenamiento (redis), y es ideal para usar como base para iniciar sus propios proyectos.
+¡Por Fin! Hemos utilizado satisfactoriamente Ansible para crear una aplicación de múltiples contenedores en Docker. La aplicación se divide en tres niveles: **Presentación (nginx), Lógica (flask) y Almacenamiento (redis)**, y es ideal para usar como base para iniciar sus propios proyectos.
 
+### Comandos utiles ###
 
+**ansible-container init**
+
+Creates files in the current directory to get you started. Read the comments, and edit to suit your needs.
+
+**ansible-container install**
+
+Downloads Ansible-Container-ready roles from Ansible Galaxy, and installs them in your project.
+
+**ansible-container build**
+
+Creates images from your Ansible playbooks.
+
+**ansible-container run**
+
+Launches the containers specified in the orchestration document, container.yml, for testing the built images. The format of container.yml is nearly identical to Docker Compose.
+
+**ansible-container deploy**
+
+Pushes the project's container images to a registry of your choice, and generates a playbook capable of deploying the project on a supported cloud provider.
+
+### Demo ###
+
+{%include youtubePlayer.html id="1hPisA4ORIU"%}
 
 ### Links de interés: ###
 
