@@ -7,7 +7,7 @@ tags: [Kubernetes, Containers, Docker]
 En este articulo pretendo hablar de manera ordenada sobre los conceptos basicos que hacen de kubernetes el orquestador de contenedores mas usado para orquestar aplicaciones que corren sobre contenedores.
 
 
-##Conceptos a tener en cuenta##
+## Conceptos a tener en cuenta ##
 
 - **Cluster:** Conjunto de máquinas físicas o virtuales que son utilizados por Kubernetes
 - **Pod:** es la unidad mínima de Kubernetes, realmente es un contenedor en jerga de Docker
@@ -64,7 +64,7 @@ NAME       STATUS    ROLES     AGE       VERSION
 minikube   Ready     <none>    14m       v1.10.0
 ```
 
-#Desplegando una aplicacion#
+## Desplegando una aplicacion ##
 
 Una vez que tenemos el cluster corriendo, podremos desplegar contenedores dentro del cluster, para ello debemos crear una configuracion de despliegue **(Deployment Configuration)**. Cuando se ejecuta un deployment de configuracion, se le indica a kubernetes que debe crear y actualizar las instancias de nuestra aplicacion. Una vez que esta creado el despliegue, el master de kubernetes programa las instancias que deben correr en cada nodo miembro del cluster.
 
@@ -138,7 +138,7 @@ Ahora vamos a probar la aplicacion que se esta ejecutando en este POD, realizand
 curl http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/
 Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-5c69669756-52r9w | v=1
 ```
-##Pods y Nodos##
+## Pods y Nodos ##
 
 **Kubernetes Pods**
 
@@ -162,7 +162,7 @@ Cada nodo de kubernetes ejecuta al menos:
 
 ![k8s_node_Diagram]({{ site.baseurl }}/images/k8s_cluster_node_diagram.png)
 
-##Comandos utiles para troubleshooting##
+## Comandos utiles para troubleshooting ##
 
 - **kubectl get** lista los recursos
 - **kubectl describe** da informacion detallada acerca de los recursos
@@ -286,7 +286,7 @@ Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-5c69669756-c5m9d | 
 exit
 ```
 
-##Exponiendo la aplicacion##
+## Exponiendo la aplicacion ##
 
 Los Pods de kubernetes son "mortales", esto quiere decir que tienen un ciclo de vida. Cuando un nodo muere, todos los pods que corren en ese nodo se pierden. A continuacion el **Replicaset** (Nueva generacion de Replication Controller) crea dinamicamente nuevos pods para que la aplicacion siga corriendo.
 
@@ -557,7 +557,7 @@ $ kubectl exec -ti $POD_NAME curl localhost:8080
 Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-5c69669756-9qrl2 | v=1
 ```
 
-##Corriendo multiples instancias##
+## Corriendo multiples instancias ##
 
 **Escalando la aplicacion**
 
@@ -719,7 +719,7 @@ kubernetes-bootcamp-5c69669756-jmwwx   1/1       Running   0          21m       
 ```
 Como podemos ver hay dos Pods que fueron destruidos o terminados.
 
-##Rolling Updates###
+## Rolling Updates ##
 
 **Ejecutando updates de la aplicacion**
 
@@ -1722,17 +1722,13 @@ Events:
   Normal  Started                27m   kubelet, minikube  Started container
 ```
 
-##Final##
+## Final ##
 
 Este articulo pretende ser un resumen del curso oficial de Kubernetes, espero que les sea de utilidad.
 
 ### Links de interés: ###
 
-[Ansible Container Installation][Ansible Container Installation]
+[Kubernetes Documentacion Oficial[Kubernetes Documentacion Oficial]
 
-[Kubernetes]: https://kubernetes.io/docs/tutorials/kubernetes-basics/
-
-[Ansible Container Started Guide][Ansible Container Started Guide]
-
-[Ansible Container Started Guide]: https://docs.ansible.com/ansible-container/getting_started.html
+[Kubernetes Documentacion Oficial]: https://kubernetes.io/docs/tutorials/kubernetes-basics/
 
