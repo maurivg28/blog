@@ -7,6 +7,7 @@ tags: [Kubernetes, Containers, Docker]
 En el articulo anterior vimos toda la parte teorica de Kubernetes. Ahora pretendo mostrarles algo mas practico para tener una idea sobre como funciona un cluster de kubernetes.
 
 
+
 ## Escenario practico ##
 
 En nuestro caso práctico de instalación y configuración de kudeadm tendremos el siguiente escenario que se compone por tres nodos, de los cuales uno de ellos es el master y los otros dos son nodos que sirven al master.
