@@ -155,10 +155,10 @@ Vamos a cambiar los permisos a dicho directorio y con eso ya tendremos configura
 chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-Vamos a reiniciar la configuracion ejecutando el domando:
+En caso que tengamos que reiniciar la configuracion ejecutaremos el comando:
 
 ```sh
-sudo kubeadm reset
+kubeadm reset
 ```
 
 ## Instalacion del POD Network ##
