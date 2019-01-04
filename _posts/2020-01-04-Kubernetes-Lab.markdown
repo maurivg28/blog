@@ -22,6 +22,8 @@ Les dejo el link de la documentacion oficial para que lo puedan hacer:
 
 [Docker Instalacion]: https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
+**Tengan en cuenta que debemos instalar el paquete de kubernetes en cada nodo**
+
 ## Instalacion y Configuracion de Kubeadm ##
 
 Para comenzar tendremos que instalar las aplicaciones básicas para Ubuntu.
@@ -61,6 +63,7 @@ Vamos a realizar la instalación de los paquetes necesarios para kubeadm.
 ```sh
 apt-get install -y kubelet kubeadm kubectl
 ```
+Hasta aqui hemos instalado todos los paquetes necesarios de kubernetes. **Recuerden que hay que hacerlo para cada nodo**
 
 Una vez que se terminaron de instalar los paquetes anteriores, vamos a ejecutar `kubeadm`. 
 Esta ejecución solamente se realiza en el equipo que va a ser **master(Master)**.
@@ -171,7 +174,7 @@ Vamos a cambiar los permisos a dicho directorio y con eso ya tendremos configura
 chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-En caso que tengamos que reiniciar la configuracion ejecutaremos el comando:
+**En caso que tengamos que reiniciar la configuracion ejecutaremos el comando:**
 
 ```sh
 kubeadm reset
@@ -217,23 +220,76 @@ kube-system   kube-flannel-ds-amd64-b57df         1/1     Running   0          9
 kube-system   kube-proxy-6vlrw                    1/1     Running   0          3m46s
 kube-system   kube-scheduler-k8smaster            1/1     Running   0          3m2s
 ```
+
 ## Union de los nodos ##
 
 Para que puedan comunicarse los diferentes nodos con el master y viceversa tendremos que unir los distintos nodos ya que si no, estarían los tres nodos aislado y de esa forma no realizaría su cometido. Para ello vamos a introducir el siguiente comando en los otros dos nodos que se tienen que unir con el master(dicho comando es el que nos generó el **master** cuando se ejecuto el `kudeadm init` ).
 
-
 Una vez que ejeutamos el comando **join** en ambos nodos, ya tendremos los dos nodos (nodo1 y nodo2) unidos al master.
+
+**Nodo1**
+
+```sh
+root@k8snodo1:~# kubeadm join 10.1.0.4:6443 --token is5u7s.09yreg0u1bnu4qpn --discovery-token-ca-cert-hash sha256:ab64790e4584743e4485da4e7fd06867fbf0fdcea8bad016a3e09b881b558e09
+[preflight] Running pre-flight checks
+	[WARNING SystemVerification]: this Docker version is not on the list of validated versions: 18.09.0. Latest validated version: 18.06
+[discovery] Trying to connect to API Server "10.1.0.4:6443"
+[discovery] Created cluster-info discovery client, requesting info from "https://10.1.0.4:6443"
+[discovery] Requesting info from "https://10.1.0.4:6443" again to validate TLS against the pinned public key
+[discovery] Cluster info signature and contents are valid and TLS certificate validates against pinned roots, will use API Server "10.1.0.4:6443"
+[discovery] Successfully established connection with API Server "10.1.0.4:6443"
+[join] Reading configuration from the cluster...
+[join] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -oyaml'
+[kubelet] Downloading configuration for the kubelet from the "kubelet-config-1.13" ConfigMap in the kube-system namespace
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Activating the kubelet service
+[tlsbootstrap] Waiting for the kubelet to perform the TLS Bootstrap...
+[patchnode] Uploading the CRI Socket information "/var/run/dockershim.sock" to the Node API object "k8snodo1" as an annotation
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run 'kubectl get nodes' on the master to see this node join the cluster.
+```
+**Nodo2**
+
+```sh
+root@k8snodo2:~# kubeadm join 10.1.0.4:6443 --token is5u7s.09yreg0u1bnu4qpn --discovery-token-ca-cert-hash sha256:ab64790e4584743e4485da4e7fd06867fbf0fdcea8bad016a3e09b881b558e09
+[preflight] Running pre-flight checks
+	[WARNING SystemVerification]: this Docker version is not on the list of validated versions: 18.09.0. Latest validated version: 18.06
+[discovery] Trying to connect to API Server "10.1.0.4:6443"
+[discovery] Created cluster-info discovery client, requesting info from "https://10.1.0.4:6443"
+[discovery] Requesting info from "https://10.1.0.4:6443" again to validate TLS against the pinned public key
+[discovery] Cluster info signature and contents are valid and TLS certificate validates against pinned roots, will use API Server "10.1.0.4:6443"
+[discovery] Successfully established connection with API Server "10.1.0.4:6443"
+[join] Reading configuration from the cluster...
+[join] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -oyaml'
+[kubelet] Downloading configuration for the kubelet from the "kubelet-config-1.13" ConfigMap in the kube-system namespace
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Activating the kubelet service
+[tlsbootstrap] Waiting for the kubelet to perform the TLS Bootstrap...
+[patchnode] Uploading the CRI Socket information "/var/run/dockershim.sock" to the Node API object "k8snodo2" as an annotation
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run 'kubectl get nodes' on the master to see this node join the cluster.
+```
 
 ## Comprobación de la unión de los nodos con el master ##
 
 Vamos a comprobar que tenemos los dos nodos unidos al **master**. Para ello vamos a ir al master y ejecutar el siguiente comando:
 
 ```sh
-root@master:/home/ubuntu# sudo kubectl get nodes
-NAME          STATUS  ROLES  AGE VERSION
-kubernetes-1   Ready  master  1h  v1.9.2
-kubernetes-2   Ready  <none>  1h  v1.9.2
-kubernetes-3   Ready  <none>  1h  v1.9.2
+root@k8smaster:~# kubectl get nodes
+NAME        STATUS   ROLES    AGE     VERSION
+k8smaster   Ready    master   29m     v1.13.1
+k8snodo1    Ready    <none>   6m51s   v1.13.1
+k8snodo2    Ready    <none>   63s     v1.13.1
 ```
 
 ## Final ##
