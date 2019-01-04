@@ -291,7 +291,6 @@ k8smaster   Ready    master   29m     v1.13.1
 k8snodo1    Ready    <none>   6m51s   v1.13.1
 k8snodo2    Ready    <none>   63s     v1.13.1
 ```
-
 ## Final ##
 
 Con esto hemos creado un cluster con kubernetes. Espero que les sea de utilidad.
