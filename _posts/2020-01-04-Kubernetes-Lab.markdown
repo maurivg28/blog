@@ -302,3 +302,7 @@ Con esto hemos creado un cluster con kubernetes. Espero que les sea de utilidad.
 
 [Kubernetes Documentacion Oficial]: https://kubernetes.io/docs/tutorials/kubernetes-basics/
 
+[Kubernetes Configuracion][Kubernetes Configuracion]
+
+[Kubernetes Configuracion]: https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
+
