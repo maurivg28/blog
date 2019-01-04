@@ -1,5 +1,5 @@
 ---
-title:  "Kubernetes - Hands on"
+title:  "Kubernetes - let's do it"
 date:   2019-01-04 10:00:00
 categories: [Kubernetes]
 tags: [Kubernetes, Containers, Docker]

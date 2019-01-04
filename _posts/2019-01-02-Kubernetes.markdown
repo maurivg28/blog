@@ -1728,7 +1728,7 @@ Este articulo pretende ser un resumen del curso oficial de Kubernetes, espero qu
 
 ### Links de interés: ###
 
-[Kubernetes Documentacion Oficial[Kubernetes Documentacion Oficial]
+[Kubernetes Documentacion Oficial][Kubernetes Documentacion Oficial]
 
 [Kubernetes Documentacion Oficial]: https://kubernetes.io/docs/tutorials/kubernetes-basics/
 
