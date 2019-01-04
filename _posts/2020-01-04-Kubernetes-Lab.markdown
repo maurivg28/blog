@@ -26,6 +26,12 @@ Les dejo el link de la documentacion oficial para que lo puedan hacer:
 
 Para comenzar tendremos que instalar las aplicaciones básicas para Ubuntu.
 
+Antes vamos a cambiarnos al usuario root:
+
+```sh
+sudo su -
+```
+
 ```sh
 apt-get update && apt-get install -y apt-transport-https
 ```
