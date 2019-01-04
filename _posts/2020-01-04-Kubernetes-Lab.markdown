@@ -7,20 +7,13 @@ tags: [Kubernetes, Containers, Docker]
 En el articulo anterior vimos toda la parte teorica de Kubernetes. Ahora pretendo mostrarles algo mas practico para tener una idea sobre como funciona un cluster de kubernetes.
 
 
-
 ## Escenario practico ##
 
 En nuestro caso práctico de instalación y configuración de kudeadm tendremos el siguiente escenario que se compone por tres nodos, de los cuales uno de ellos es el master y los otros dos son nodos que sirven al master.
 La intraestructura la vamos a montar sobre Azure y seran 3 VM con Ubuntu 16 LTS.
 La siguiente imagen muestra como es el escenario.
 
-mermaid("
-graph TB
-  Master-->Nodo1
-  Master-->Nodo2
-  LB-->Nodo1
-  LB-->Nodo2
-")
+
 
 **Instalacion de Docker**
 
@@ -79,8 +72,8 @@ Una vez que ejecutamos el comando `kubeadm init` deberiamos ver algo como lo sig
 [init] Using Authorization modes: [Node RBAC]
 [preflight] Running pre-flight checks.
  [WARNING SystemVerification]: docker version is greater than the most recently validated version. Docker version: 17.05.0-ce. Max validated version: 17.03
- [WARNING Hostname]: hostname "kubernetes-1" could not be reached
- [WARNING Hostname]: hostname "kubernetes-1" lookup kubernetes-1 on 192.168.102.2:53: no such host
+ [WARNING Hostname]: hostname "master" could not be reached
+ [WARNING Hostname]: hostname "master" lookup kubernetes-1 on 192.168.102.2:53: no such host
  [WARNING FileExisting-crictl]: crictl not found in system path
 [certificates] Generated ca certificate and key.
 [certificates] Generated apiserver certificate and key.
