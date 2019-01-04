@@ -27,13 +27,13 @@ Les dejo el link de la documentacion oficial para que lo puedan hacer:
 Para comenzar tendremos que instalar las aplicaciones básicas para Ubuntu.
 
 ```sh
-sudo apt-get update && apt-get install -y apt-transport-https
+apt-get update && apt-get install -y apt-transport-https
 ```
 
 Descargamos la clave GPG de kubernetes.
 
 ```sh
-sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
 ```
 
 Añadiremos el repositorio
@@ -47,25 +47,25 @@ EOF
 Actualizamos paquetes para incluir los de kubernetes.
 
 ```sh
-sudo apt-get update
+apt-get update
 ```
 
 Vamos a realizar la instalación de los paquetes necesarios para kubeadm.
 
 ```sh
-sudo apt-get install -y kubelet kubeadm kubectl
+apt-get install -y kubelet kubeadm kubectl
 ```
 
 Una vez que se terminaron de instalar los psquetes anteriores, vamos a ejecutar `kubeadm`. 
 Esta ejecución solamente se realiza en el equipo que va a ser **master(Master)**.
 
 ```sh
-sudo kubeadm init
+kubeadm init
 ```
 
 Una vez que ejecutamos el comando `kubeadm init` deberiamos ver algo como lo siguiente:
 
-```sh
+```
 [init] Using Kubernetes version: v1.9.2
 [init] Using Authorization modes: [Node RBAC]
 [preflight] Running pre-flight checks.
@@ -124,7 +124,7 @@ kubeadm join --token 8212ea.b01e65b8129b03eb 10.0.0.15:6443 --discovery-token-ca
 Veremos que al final de la ejecucion nos aparece un comando `kubeadm join` el cual debemos guardar para enlazar los nodos al **master**
 
 ```sh
-sudo kubeadm join --token 8212ea.b01e65b8129b03eb 10.0.0.15:6443 --discovery-token-ca-cert-hash sha256:54e3489945be576a4edbd3d6f268f5f8bcf8e8ece016709b12060df7828ba751
+kubeadm join --token 8212ea.b01e65b8129b03eb 10.0.0.15:6443 --discovery-token-ca-cert-hash sha256:54e3489945be576a4edbd3d6f268f5f8bcf8e8ece016709b12060df7828ba751
 ```
 
 ## Configuración de Kubeadm (Entorno de usuario) ##
@@ -134,19 +134,19 @@ Vamos a configurar el entorno de usuario para ello vamos a realizar lo siguiente
 **Nota:** Tengan en cuenta que lo que vamos a ejecutar se hace solo en el **master**
 
 ```sh
-sudo mkdir -p $HOME/.kube
+mkdir -p $HOME/.kube
 ```
 
 Vamos a configurar los archivos de configuración
 
 ```sh
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 ```
 
 Vamos a cambiar los permisos a dicho directorio y con eso ya tendremos configurado el entorno de usuario.
 
 ```sh
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 Vamos a reiniciar la configuracion ejecutando el domando:
@@ -160,7 +160,7 @@ sudo kubeadm reset
 Deberemos instalar un pod network para comunicar el **master** con los demas nodos que en nuestro caso es para permitir la comunicación con los otros dos nodos. Existen diferentes proyectos que proporcionan pod network para kubernetes, algunos de ellos también apoyan la política de red, siendo en nuestro caso en el que vamos a instalar **“Calico”** y se realiza con el siguiente comando **(se ejecuta solo en el master)**.
 
 ```sh
-sudo kubectl apply -f https://docs.projectcalico.org/v2.6/getting-started/kubernetes/installation/hosted/kubeadm/1.6/calico.yaml
+kubectl apply -f https://docs.projectcalico.org/v2.6/getting-started/kubernetes/installation/hosted/kubeadm/1.6/calico.yaml
 ```
 
 ## Union de los nodos ##
@@ -169,7 +169,7 @@ Para que puedan comunicarse los diferentes nodos con el master y viceversa tendr
 
 Cuando ejecutemos el comando veremos la siguiente salida:
 
-```sh
+```
 root@nodo1:/home/ubuntu# kubeadm join --token 8212ea.b01e65b8129b03eb 10.0.0.15:6443 --discovery-token-ca-cert-hash sha256:54e3489945be576a4edbd3d6f268f5f8bcf8e8ece016709b12060df7828ba751
 [preflight] Running pre-flight checks.
  [WARNING SystemVerification]: docker version is greater than the most recently validated version. Docker version: 17.05.0-ce. Max validated version: 17.03
@@ -192,7 +192,7 @@ Run 'kubectl get nodes' on the master to see this node join the cluster.
 
 Luego ejecutamos el mismo comando en el nodo restante y veremos la siguente salida:
 
-```sh
+```
 root@nodo2:/home/ubuntu# kubeadm join --token 8212ea.b01e65b8129b03eb 10.0.0.15:6443 --discovery-token-ca-cert-hash sha256:54e3489945be576a4edbd3d6f268f5f8bcf8e8ece016709b12060df7828ba751
 [preflight] Running pre-flight checks.
  [WARNING SystemVerification]: docker version is greater than the most recently validated version. Docker version: 17.05.0-ce. Max validated version: 17.03
