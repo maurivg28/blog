@@ -13,8 +13,6 @@ En nuestro caso práctico de instalación y configuración de kudeadm tendremos 
 La intraestructura la vamos a montar sobre Azure y seran 3 VM con Ubuntu 16 LTS.
 La siguiente imagen muestra como es el escenario.
 
-
-
 **Instalacion de Docker**
 
 En cada nodo vamos a instalarle el motor de Docker. En este blog hay un capitulo dedicado a su instalacion.
