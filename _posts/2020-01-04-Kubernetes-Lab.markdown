@@ -78,7 +78,7 @@ Environment="cgroup-driver=systemd/cgroup-driver=cgroupfs"
 Una vez que se terminaron de instalar los paquetes anteriores, vamos a ejecutar `kubeadm`. 
 Esta ejecución solamente se realiza en el equipo que va a ser **master(Master)**.
 
-Si usamos el proyecto de red **Flannel** debemos ingresar al comando `kubeadminit` el parametro `--pod-network-cidr=10.10.0.0/16`
+Si usamos el proyecto de red **Flannel** debemos ingresar al comando `kubeadminit` el parametro `--pod-network-cidr=10.244.0.0/16`
 
 ```sh
 kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=10.1.0.4
