@@ -24,8 +24,6 @@ Les dejo el link de la documentacion oficial para que lo puedan hacer:
 
 [Docker Instalacion]: https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
-**Tengan en cuenta que debemos instalar el paquete de kubernetes en cada nodo**
-
 ## Instalacion y Configuracion de Kubeadm ##
 
 Para comenzar tendremos que instalar las aplicaciones básicas para Ubuntu.
@@ -59,13 +57,23 @@ Actualizamos paquetes para incluir los de kubernetes.
 ```sh
 apt-get update
 ```
+Editamos el archivo host e ingresamos el nombre y la ip tanto del master como de todos los nodos del cluster:
+
+```sh
+vim /etc/hosts
+```
 
 Vamos a realizar la instalación de los paquetes necesarios para kubeadm.
 
 ```sh
 apt-get install -y kubelet kubeadm kubectl
 ```
-Hasta aqui hemos instalado todos los paquetes necesarios de kubernetes. **Recuerden que hay que hacerlo para cada nodo**
+
+Editamos el archivo `vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf `y agregamos la linea:
+
+```sh
+Environment="cgroup-driver=systemd/cgroup-driver=cgroupfs"
+```
 
 Una vez que se terminaron de instalar los paquetes anteriores, vamos a ejecutar `kubeadm`. 
 Esta ejecución solamente se realiza en el equipo que va a ser **master(Master)**.
@@ -73,13 +81,15 @@ Esta ejecución solamente se realiza en el equipo que va a ser **master(Master)*
 Si usamos el proyecto de red **Flannel** debemos ingresar al comando `kubeadminit` el parametro `--pod-network-cidr=10.10.0.0/16`
 
 ```sh
-kubeadm init --pod-network-cidr=10.10.0.0/16
+kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=10.1.0.4
 ```
+
+**Nota** 10.1.0.4 es la ip del master.
 
 Una vez que ejecutamos el comando `kubeadm init` deberiamos ver algo como lo siguiente:
 
 ```sh
-root@k8smaster:~# kubeadm init --pod-network-cidr=10.10.0.0/16
+root@k8smaster:~# kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=10.4.1.5
 [init] Using Kubernetes version: v1.13.1
 [preflight] Running pre-flight checks
 	[WARNING SystemVerification]: this Docker version is not on the list of validated versions: 18.09.0. Latest validated version: 18.06
@@ -222,6 +232,19 @@ kube-system   kube-flannel-ds-amd64-b57df         1/1     Running   0          9
 kube-system   kube-proxy-6vlrw                    1/1     Running   0          3m46s
 kube-system   kube-scheduler-k8smaster            1/1     Running   0          3m2s
 ```
+
+Instalamos el dashboard de kubernetes:
+
+```sh
+kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
+```
+
+Les dejo los pasos para acceder al dashboard:
+
+[Kubernetes Dashboard][Kubernetes Dashboard]
+
+[Kubernetes Dashboard]: https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+
 
 ## Union de los nodos ##
 
