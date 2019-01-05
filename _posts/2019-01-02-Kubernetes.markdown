@@ -561,7 +561,7 @@ Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-5c69669756-9qrl2 | 
 
 **Escalando la aplicacion**
 
-Anteriormente hemos creado un **Deployment**, y fue expuesto a traves de un **Service**. En el Deployment solamente se ha creado un Pod en donde corria la apliccaion. Cuando el trafico se incrementa, necesitamos escalar la aplicacion para no afectar a los usuarios que consumen la misma.
+Anteriormente hemos creado un **Deployment**, y fue expuesto a traves de un **Service**. En el Deployment solamente se ha creado un Pod en donde corria la aplicacion. Cuando el trafico se incrementa, necesitamos escalar la aplicacion para no afectar a los usuarios que consumen la misma.
 
 ![k8s_scaling1_Diagram]({{ site.baseurl }}/images/k8s_cluster_scaling1_diagram.png)
 
