@@ -310,7 +310,7 @@ Aunque cada Pod tiene una dirección IP única, esas IP no están expuestas fuer
 
 ![k8s_service_Diagram]({{ site.baseurl }}/images/k8s_cluster_service_diagram.png)
 
-El servicio rutea el trafico a traves del conjunto de Pods. Los servicios son una abstraccion que permite si un Pod muere ser replique en Kubernetes sin impactar en la aplicacion que esta corriendo.
+El servicio rutea el trafico a traves del conjunto de Pods. Los servicios son una abstraccion que permite si un Pod muere se generen otras replicas en Kubernetes sin impactar en la aplicacion que esta corriendo.
 
 El descubrimiento y enrutamiento entre los Pods dependientes (como los componentes de frontend y backend en una aplicación) son manejados por los Servicios de Kubernetes.
 
