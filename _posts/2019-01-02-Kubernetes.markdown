@@ -10,7 +10,7 @@ En este articulo pretendo hablar de manera ordenada sobre los conceptos basicos 
 ## Conceptos a tener en cuenta ##
 
 - **Cluster:** Conjunto de máquinas físicas o virtuales que son utilizados por Kubernetes
-- **Pod:** es la unidad mínima de Kubernetes, realmente es un contenedor en jerga de Docker
+- **Pod:** es la unidad mínima de Kubernetes, realmente es un contenedor en jerga de Docker.
 - **Labels y selectors:** son pares de claves y valores, las cuales se pueden aplicar a pods, services, replication controllers, etc. y con ellos podremos identificarlos para poderlos gestionar.
 - **Node:** es el servidor ya sea virtual o físico que aloja el sistema de Kubernetes y donde vamos a desplegar nuestros pods (contenedores).
 - **Replication Controller:** es el responsable de gestionar la vida de los pods y el encargado de mantener iniciados los pods que se le hayan indicado en la configuración. Permite escalar de forma muy sencilla los sistemas y maneja la recreación de un pod cuando ocurre algún tipo de fallo.
