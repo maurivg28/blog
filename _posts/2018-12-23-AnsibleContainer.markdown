@@ -12,14 +12,15 @@ se me ocurrio investigar si podia cumplir este objetivo. A continuacion les voy 
 
 ## Introducción ##
 
-Ansible Container, es un orquestador el cual nos permite crear imagenes para nuestros contenedores. En vez de crear un contenedor a traves de un docker file, podemos hacerlo a travez de un archivo YAML, aplicando todas las ventajas que nos ofrece Ansible, como ser invocar roles para aplicarlos a la imagen.
-Pero Ansible Container no se detiene ahi, tambien nos permite enviar las imagenes a registros publicos y privados.
+Ansible Container es un proyecto de código abierto que tiene como objetivo permitir la automatización de todo el proceso de creación, despliegue y administración de contenedores a través de Ansible playbooks.
 
-## Porque usar Ansible Container? ##
+## ¿Qué es Ansible Container? ##
 
-En los últimos años, ha habido una explosión de interés en Microservicios basados ​​en contenedores y herramientas de orquestación automatizada como Ansible. Sin embargo, lograr que estos sistemas funcionen juntos siempre ha sido un dolor de cabeza. Con el fin de crear imágenes de contenedores, generalmente comenzaría creando archivos Docker (Docker Files) desordenados, encadenando servicios junto con Docker-Compose, y luego, finalmente, tratando de organizar la implementación a través de una plataforma como Kubernetes (tal vez utilizando Ansible para automatizar parte del proceso).
-
-Ansible Container elimina el dolor de la ecuación y le permite crear directamente imágenes de Docker utilizando los conceptos existentes de Ansible. En resumen, podremos crear contenedores usando Ansible.
+Ansible Container es una tecnología creada para proporcionar un flujo de trabajo centrado en Ansible para construir, ejecutar, probar y desplegar contenedores.
+Ansible Container permite la creación completa de contenedores Linux con formato Docker y poder orquestar a partir de Ansible Playbooks. Su principal función es crear una aplicación a partir de un fichero YAML, en lugar de usar un fichero Dockerfile, pudiendo enumerar las funciones que queremos que tenga el contenedor, además de mejorar la forma de crear y configurar contenedores a partir de plantillas, datos encriptados, etc.
+Ansible permite a los desarrolladores y operadores implementar entornos y aplicaciones de forma más rápida y sencilla, pudiendo automatizar las actividades rutinarias como la configuración de red, implementaciones en la nube y la creación de entornos de desarrollo.
+Con las capacidades de Ansible Container, los usuarios serán capaces de automatizar su infraestructura y sus redes con Ansible Playbooks, usando Playbooks adicionales para incluir sus aplicaciones y desplegarlas en una plataforma de contenedor de aplicaciones.
+Junto a Ansible Container, el proyecto Ansible, ha lanzado nuevos módulos Kubernetes que permiten la producción de plantillas Kubernetes directamente desde el Ansible Playbook. Esta función permite construir contenedores Linux e implementar a una plataforma de aplicación de contenedores basada en Kubernetes como Red Hat Open Shift, de manera mucho más ágil y eficiente.
 
 ## Docker File vs Ansible ##
 
@@ -50,14 +51,15 @@ Ahora veremos que podemos usar los roles de Ansible y, por lo tanto, utilizar co
       state: present
 ```
 
-La razón por la que los Dockerfiles son tan difíciles de entender se debe a la forma en que utilizan las capas. Esencialmente, cada nueva línea en un Dockerfile crea una nueva "capa", que se agrega al tamaño del archivo. Como las imágenes del contenedor están diseñadas para ser compartidas, a menudo es ventajoso asegurarse de que los tamaños de las imágenes se mantengan lo más pequeños posible, lo que da como resultado formas creativas para unir los comandos y unificar tanto como sea posible en cada línea.
+## Objetivo ##
 
-Aunque la estrategia de capas en Ansible Container no está clara en este momento, es evidente que el uso de tareas y roles de Ansible es una gran mejora en un flujo de trabajo basado en Dockerfile.
-
-Si bien la sintaxis de un docker file no es complicada, veremos que la sintaxis de ansible es mucho mas sencilla. Esto es uno de los puntos a favor por los cuales prefiero usar herramientas como estas.
+El objetivo es crear y administrar contenedores a través de una receta Ansible sin tener que utilizar ficheros Dockerfile y desplegar una aplicación de prueba para mostrar el funcionamiento.
 
 ## Manos a la obra ##
- Paquetes necesarios:
+
+**Instalacion**
+
+Para realizar la instalación de Ansible Container se necesitan instalar previamente las siguientes dependencias:
 
 - docker
 - python
@@ -80,11 +82,13 @@ cd /ansible-container-demo
 
 **Instalando Ansible Container**
 
-Ansible container se distribuye como un paquete basico, el cual podemos instalarlo para los siguientes motores de contenedores:
+Ansible Container depende del motor del contenedor para construir, ejecutar y desplegar su proyecto. Cuando se instala Ansible Container, se debe especificar qué motores se desea que admita su instalación. Los motores soportados actualmente son:
 
 - k8s Kubernetes
 - docker Docker engine
 - openshift RedHat Openshift
+
+Para especificar que motores instalar, se indica el nombre separado por comas, entre corchetes como parte del comando de pip install
 
 En mi caso voy a instalar Ansible Container para el motor de Docker:
 
@@ -92,13 +96,19 @@ En mi caso voy a instalar Ansible Container para el motor de Docker:
 pip install "ansible-container[docker]"
 ```
 
-Luego ejecutamos el siguiente comando:
+**Inicializacion**
 
-```sh
-ansible-container init
-```
+Los proyectos realizado con Ansible Container se identifican por su estructura de sistema de archivos. La ruta del proyecto contiene toda la fuente y archivos necesarios para construir y orquestar contenedores:
 
-El comando anterior deberia generar la siguiente estructura dentro de nuestra carpeta:
+**Conductor Container**
+
+El despliegue de Ansible Container a través del proceso de construcción "build", ocurre dentro de un contenedor especial llamado "Conductor Container".
+Contiene todo lo necesario para construir imágenes de contenedores. Durante la construcción de contenedores se instala todas las dependencias necesarias a partir del "Conductor Container".
+Debido a esto se recomienda que la distribución del "Conductor Container" sea la misma distribución de los contenedores creados. Por ejemplo, si está creando imágenes de contenedores basadas en Centos 7, es buena idea usar la distribución Centos 7 en el "Conductor Container". Dicha imagen de distribución se especifica en el fichero de configuración "container.yml".
+
+**Creando los archivos necesarios**
+
+Ansible Container proporciona una forma de iniciar un proyecto simplemente ejecutando `ansible- container init` desde el directorio de su proyecto, el cual crearía los siguientes ficheros:
 
 ```sh
 ansible.cfg
@@ -108,7 +118,97 @@ meta.yml
 requirements.yml
 ```
 
-Podemos visitar la guia rapida que la pondre al final del articulo para ver mas en detalle la descripcion de cada archivo.
+Para iniciar el proceso de compilación se ejecuta `ansible-container build`. Construye y lanza el "Conductor Container". Él ejecuta instancias a partir de las imágenes del contenedor base que se especifica en el fichero `container.yml`.
+Para iniciar el contenedor se ejecuta `ansible-container run`. Inicia los contenedores de las imágenes compiladas descritas en el fichero "container.yml".
+Para cargar las imágenes creadas en un registro de contenedores se ejecuta `ansible-container deploy`.
+
+
+**¿Qué se especifica en los ficheros que hacen que esto funcione?**
+
+**Container.yml**
+
+Es un fichero de sintaxis YAML donde se describe los servicios, cómo construirlos y ejecutarlos, los repositorios, etc. Es similar a otros formatos de contenedores como Docker Compose o OpenCompose.
+Ansible Container utiliza este archivo para determinar qué imágenes crear, qué contenedores ejecutar y conectar, y qué imágenes enviar a su repositorio. Se ejecuta automáticamente.
+
+Un ejemplo del fichero “container.yml”.
+
+```sh
+# container.yml Syntax Version (don't change this)
+version: "2"
+settings:
+  # Settings for the "conductor" container.
+  # The Conductor container is a container used to
+  # orchestrate the build of other containers in the project
+  conductor:
+    # Base image for the conductor container
+    base: "ubuntu:xenial"
+  # Title of the Project
+  project_name: "ansible-container-demo"
+
+services:
+  
+  # DB Backend
+  redis:
+    from: "redis"
+    ports:
+      - "6379"
+
+  # Application
+  flask:
+    from: "ubuntu:xenial"
+    roles:
+      # Applying a role to a container
+      - role: flask
+    ports:
+      - "5000"
+    command: ["gunicorn", "--bind", "0.0.0.0:5000", "app:app", "--chdir", "/app"]
+  
+  # Proxy Frontend
+  nginx:
+    from: "ubuntu:xenial"
+    roles:
+      # Syntax for expressing extra role variables
+      - role: "nginx"
+        # These varibles are passed to the nginx config template
+        nginx_proxy_host: "flask"
+        nginx_proxy_port: 5000
+        nginx_listen_port: 8080
+    ports:
+      - "8080:8080"
+    command: ["nginx", "-c", "/etc/nginx/nginx_ansible.conf", "-g", "daemon off;"]
+
+```
+
+Estos parámetros indican lo siguiente
+
+1) Establece la versión 2.
+2) Cada uno de los contenedores que desea establecer debe estar bajo la palabra clave "services".
+3) La imagen que se especifica, es la imagen base del contenedor.
+4) Cada rol debe estar en el directorio "roles/" del proyecto creado.
+5) Los puertos que abre el contenedor por donde escucha la aplicación.
+6) Se necesita levantar todos los servicios necesarios para desplegar la aplicación,debido a que en los contenedores por defecto hay que activar los demonios.
+7) Opcionalmente se puede especificar la opción "dev_overrides". Durante la compilación esta opción anula la configuración de su entorno en producción.
+
+**Meta.yml**
+
+Es un fichero donde se puede compartir el proyecto en "Ansible Galaxy" para que otros puedan utilizarlo como plantilla para crear sus propios proyectos.
+
+**Ansible-requirements.txt**
+
+Es un fichero donde se especifica las dependencias de la biblioteca Python que podría necesitar nuestra aplicación. Este archivo sigue el formato pip para las dependencias de Python. Al ejecutar Ansible cuando se crea el "Conductor Container", estas dependencias se instalan.
+
+**Requirements.yml**
+
+Es un fichero donde se especifica los roles del fichero “container.yml”, si están en "Ansible Galaxy" o en un repositorio remoto.
+
+**Ansible.cfg**
+
+Es un fichero donde se establece la configuración de Ansible dentro del contenedor durante la compilación.
+
+**.Dockerignore**
+
+Es un fichero donde se establece los archivos que se desea ignorar durante la construcción del contenedor.
+
 
 **Ansible roles**
 
@@ -330,6 +430,7 @@ ansible-container run
 
 ¡Por Fin! Hemos utilizado satisfactoriamente Ansible para crear una aplicación de múltiples contenedores en Docker. La aplicación se divide en tres niveles: **Presentación (nginx), Lógica (flask) y Almacenamiento (redis)**, y es ideal para usar como base para iniciar sus propios proyectos.
 
+
 ### Comandos utiles ###
 
 **ansible-container init**
@@ -358,6 +459,8 @@ Pushes the project's container images to a registry of your choice, and generate
 
 ### Links de interés: ###
 
+A continuacion dejo los links que utilice como referencia para armar este articulo:
+
 [Ansible Container Installation][Ansible Container Installation]
 
 [Ansible Container Installation]: https://docs.ansible.com/ansible-container/installation.html
@@ -366,3 +469,14 @@ Pushes the project's container images to a registry of your choice, and generate
 
 [Ansible Container Started Guide]: https://docs.ansible.com/ansible-container/getting_started.html
 
+[Ansible Container Doc][Ansible Container Doc]
+
+[Ansible Container Doc]: https://docs.ansible.com/ansible-container/
+
+[Ansible Container Integration][Ansible Container Integration]
+
+[Ansible Container Integration]: https://www.ansible.com/integrations/containers/ansible-container
+
+[Revistacloudcomputing][Revistacloudcomputing]
+
+[Revistacloudcomputing]: https://www.revistacloudcomputing.com/2016/06/red-hat-presenta-ansible-container/
