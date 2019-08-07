@@ -176,5 +176,10 @@ Podemos agregar host Windows al cluster, editando el cluster y seleccionando la 
 El **worker** esta instalado en el nodo Windows y registrado en Rancher.
 
 
+## Fin ##
+
+En una proxima edicion, les voy a contar detalles si tenemos los hosts desplegados en Azure o Amazon. Asimismo estoy preparando un video que subire en este mismo articulo. =)
+
+
 
 
