@@ -4,7 +4,7 @@ date:   2019-08-21 21:46:00
 categories: [Ansible]
 tags: [Ansible, Azure, Cloud, Microsoft, DevOps]
 ---
-Si bien Ansible nos ofrece varias formas de administrar los inventarios a los cuales desplegar nuestra configuracion, senti la necesidad de buscar algo que me facilite el despliegue de diferentes configuraciones sin depender de tener que cambiar dichos inventarios.
+Si bien Ansible nos ofrece varias formas de administrar los inventarios en donde generalmente uno carga las ip de las maquinas virtuales para un post despliegue de la configuracion, senti la necesidad de buscar algo que me facilite el despliegue de diferentes configuraciones sin depender de tener que cambiar dichos inventarios.
 Ansible ofrece inventarios dinamicos, que tan solo es un script desarrollado en Python, y que nos ofrece diferentes maneras de usarlo para desplegar nuestras configuraciones como codigo. Asimismo estos scripts fieron desarrollados depenediendo del provider (Azure, AWS, VMWARE, etc).
 
 ![AnsibleLogo_Logo]({{ site.baseurl }}/images/Ansible_Logo.png)
