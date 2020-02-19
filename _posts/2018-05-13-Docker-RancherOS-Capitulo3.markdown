@@ -146,7 +146,9 @@ En próximas ediciones les voy a mostrar como desplegar un cluster de kubernetes
 
 {%include youtubePlayer.html id="3YqvpxuIIhM"%}
 
-###Recomendaciones###
+
+
+### Recomendaciones ###
 
 Para ambientes productivos los roles deber ir distribuidos de la siguiente manera:
 
