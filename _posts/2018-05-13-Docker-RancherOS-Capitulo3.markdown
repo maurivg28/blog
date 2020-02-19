@@ -124,7 +124,7 @@ En este Workload, implementaremos una aplicacion con Nginx.
 Una vez que el proceso termine podremos acceder a nuestra aplicación. A continuación les voy a dejar un video en el cual muestro todo el proceso mencionado anteriormente.
 
 
-###Video de demostración###
+### Video de demostración ###
 
 En el video, verán como se configura un cluster de Kubernetes montado en Azure desde Rancher OS. Asimismo verán que la infraestructura cuenta con los siguientes componentes: 
 
