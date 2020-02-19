@@ -146,6 +146,15 @@ En próximas ediciones les voy a mostrar como desplegar un cluster de kubernetes
 
 {%include youtubePlayer.html id="3YqvpxuIIhM"%}
 
+###Recomendaciones###
+
+Para ambientes productivos los roles deber ir distribuidos de la siguiente manera:
+
+- **Nodo con Rancher**: incluye todos los componentes de software utilizados para administrar toda la implementación de Rancher y la API del servidor de Rancher. La instalación de un servidor Rancher puede administrar cientos de clústeres de Kubernetes.
+
+- **Nodo con Control-Plane y etcd**: ejecuta la base de datos Kubernetes, etcd y la API de Kubernetes. Se puede usar un solo nodo para ambos roles. Para una configuración simple, es suficiente ejecutar solo un nodo, mientras que para entornos de producción se recomienda ejecutarlo en dos o tres nodos para obtener redundancia, con el fin de garantizar una alta disponibilidad. Este nodo se ejecutará como una instancia independiente bajo demanda.
+
+- **Nodos Workers**: son los agentes en la implementación de Rancher que ejecutan los contenedores y pods.
 
 ### Links de interés: ###
 
