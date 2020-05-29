@@ -182,7 +182,7 @@ Por ultimo, llegamos al paso de despliegue. Cuando el workflow pasa el paso de i
 **Archivo yaml completo**
 
 ```bash
-name: Terraform deploy to Azure
+name: Desliegue con Terraform
 
 on: [push]
 
