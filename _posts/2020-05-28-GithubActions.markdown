@@ -16,8 +16,11 @@ Hace poco descubri que Github ha liberado Github actions, y a continuacion vamos
 **Previamente vamos a necesitar lo siguiente:**
 
 1- Una suscripcion de Azure.
+
 2- Un repositirio de Github.
+
 3- Visual Studio Code para la escritura del codigo.
+
 4- Terraform.
 
 **Creacion de secretos en Github**
