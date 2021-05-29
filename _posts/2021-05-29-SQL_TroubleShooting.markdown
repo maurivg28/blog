@@ -16,8 +16,11 @@ Si bien siempre vamos a ir a revisar como esta de recursos dicha infraestructura
 **SQL Management Studio:**
 
 1- Abrimos SQL Management Studio.
+
 2- Nos conectamos a la instancia de SQL.
+
 3- Boton derecho sobre la instancia y luego hacer click en **Activity Monitor**
+
 4- Aqui veremos que tenemos dos cosas importantes a ver:
 
 a- **Recent Expensive Queries** son todas las consultas que estan generando un alto costo a nivel de la instancia de SQL, son las que mas demoran, las que mas consumen algun recurso.
